@@ -38,6 +38,13 @@ names(tagMatrixList)
 plot <- plotAvgProf(tagMatrixList, xlim = c(-3000,3000))
 ggsave("output/avgProf_TSS.pdf", plot=plot, width=10, height=5, device="pdf")
 
+plot <- plotAvgProf(tagMatrixList[c("1b", "3a", "4b")], xlim = c(-3000,3000))
+ggsave("output/avgProf_TSS_1.pdf", plot=plot, width=10, height=5, device="pdf")
+
+plot <- plotAvgProf(tagMatrixList[c("1b", "2a", "5b")], xlim = c(-3000,3000))
+ggsave("output/avgProf_TSS_2.pdf", plot=plot, width=10, height=5, device="pdf")
+
+
 
 pdf("output/tagMatrix_HM_1.pdf", width=10, height=5)
 tagHeatmap(tagMatrixList[c("1a_peaks", "1b_peaks")], xlim = c(-3000,3000), color = "darkorange")
