@@ -70,7 +70,11 @@ dev.off()
 library(clusterProfiler)
 library(org.Hs.eg.db)
 
+BP_list <- list()
+MF_list <- list()
+
 for (i in 1:length(peaknames)) {
+# for (i in 1) {
    anno <- data.frame(ann[[peaknames[i]]]@anno)
    entrez <- anno$geneId
 
@@ -82,5 +86,77 @@ for (i in 1:length(peaknames)) {
                     qvalueCutoff = 0.05, 
                     readable = TRUE)
 
-    cluster_summary <- data.frame(ego)            
+    BP_list[peaknames[i]] <- ego
+    cluster_summary <- data.frame(ego)   
+    write.csv(cluster_summary, paste0("output/clusterProfiler_BP_", peaknames[i], ".csv"))        
+
+    plt <- dotplot(ego, x="count", showCategory=20, font.size=10, )
+    ggsave(paste0("output/clusterProfiler_BP_", peaknames[i], ".pdf"), plot=plt, dpi=300, width=6, height=7)
+
+
+   ego <- enrichGO(gene = entrez, 
+                    keyType = "ENTREZID", 
+                    OrgDb = org.Hs.eg.db, 
+                    ont = "MF", 
+                    pAdjustMethod = "BH", 
+                    qvalueCutoff = 0.05, 
+                    readable = TRUE)
+
+    MF_list[peaknames[i]] <- ego
+    cluster_summary <- data.frame(ego)   
+    write.csv(cluster_summary, paste0("output/clusterProfiler_MF_", peaknames[i], ".csv"))        
+
+    plt <- dotplot(ego, x="count", showCategory=20, font.size=10, )
+    ggsave(paste0("output/clusterProfiler_MF_", peaknames[i], ".pdf"), plot=plt, dpi=300, width=6, height=7)
+
 }
+
+library(gridExtra)
+# comparisons
+pltlist <- BP_list[c("1b_peaks", "3a_peaks", "4b_peaks")]
+
+grobs <- lapply(pltlist,
+        function(.x) dotplot(.x, x="count", showCategory=20, font.size=5) + 
+        theme(legend.text=element_text(size=5),
+              legend.title=element_text(size=6),
+              legend.key.size = unit(0.3, 'cm')) )
+
+grid <- grid.arrange(grobs=grobs, ncol=3) 
+path <- file.path("output/grid.GO.BP.1.pdf")
+ggsave(path, grid, width=10, height=5,  dpi = 300, device='pdf')
+
+pltlist <- BP_list[c("1b_peaks", "2a_peaks", "5b_peaks")]
+
+grobs <- lapply(pltlist,
+        function(.x) dotplot(.x, x="count", showCategory=20, font.size=5) + 
+        theme(legend.text=element_text(size=5),
+              legend.title=element_text(size=6),
+              legend.key.size = unit(0.3, 'cm')) )
+
+grid <- grid.arrange(grobs=grobs, ncol=3) 
+path <- file.path("output/grid.GO.BP.2.pdf")
+ggsave(path, grid, width=10, height=5,  dpi = 300, device='pdf')
+
+pltlist <- MF_list[c("1b_peaks", "3a_peaks", "4b_peaks")]
+
+grobs <- lapply(pltlist,
+        function(.x) dotplot(.x, x="count", showCategory=20, font.size=5) + 
+        theme(legend.text=element_text(size=5),
+              legend.title=element_text(size=6),
+              legend.key.size = unit(0.3, 'cm')) )
+
+grid <- grid.arrange(grobs=grobs, ncol=3) 
+path <- file.path("output/grid.GO.MF.1.pdf")
+ggsave(path, grid, width=10, height=5,  dpi = 300, device='pdf')
+
+pltlist <- MF_list[c("1b_peaks", "2a_peaks", "5b_peaks")]
+
+grobs <- lapply(pltlist,
+        function(.x) dotplot(.x, x="count", showCategory=20, font.size=5) + 
+        theme(legend.text=element_text(size=5),
+              legend.title=element_text(size=6),
+              legend.key.size = unit(0.3, 'cm')) )
+
+grid <- grid.arrange(grobs=grobs, ncol=3) 
+path <- file.path("output/grid.GO.MF.2.pdf")
+ggsave(path, grid, width=10, height=5,  dpi = 300, device='pdf')
