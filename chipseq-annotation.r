@@ -170,6 +170,11 @@ ggsave(path, grid, width=10, height=5,  dpi = 300, device='pdf')
 # Differential peaks
 #################################################################################################
 library(DiffBind)
+library(stringr)
+
+
+out.dir <- "output/diff"
+dir.create(out.dir)
 
 # samples <- read.csv("samplesheets/comp/samplesheet_all.csv")
 # samples_no1a <- read.csv("samplesheets/comp/samplesheet_-1a.csv")
@@ -177,32 +182,41 @@ library(DiffBind)
 sheets <- list.files(file.path("samplesheets"))
 sheets <- file.path("samplesheets", sheets)
 sheets <- sheets[!file.info(sheets)$isdir]
+names(sheets) <- str_extract_all(sheets, "[0-9]v[0-9]")
 
-dbobj <- dba(sampleSheet=samples)
 
-pdf("output/correlatHM.pdf", width=7, height=7)
-plot(dbobj)
-dev.off()
-# count
-dbobj <- dba.count(dbobj)
-# plot from readcounts rather than peaks:
-pdf("output/correlatHM_readCounts.pdf", width=7, height=7)
-plot(dbobj)
-dev.off()
-# save information
-info <- dba.show(dbobj)
-# normalize
-dbobj <- dba.normalize(dbobj)
-# contrasts
-dbobj <- dba.contrst(dbobj, minMembers=1)
-contrasts <- dba.show(diff_WThox_KOv2, bContrasts = T)
-# run analysis
-dbobj <- dba.analyze(dbobj)
-dba.show(dbobj, bContrasts=TRUE)
+for (i in 1:length(sheets)){
 
-diffBound <- dba.report(dbobj)
-diffBound <- addGeneIDs(diffBound, "org.Hs.eg.db", "symbol")
+      # make output
+      out <- paste0(out.dir, names(sheets[i]))
+      samples <- read.csv(sheets[[i]])
+      # init obj
+      dbobj <- dba(sampleSheet=samples)
+      dbobj$config$yieldSize <- 500000
+      # corr 
+      pdf(paste0(out, "correlatHM.pdf"), width=7, height=7)
+      plot(dbobj)
+      dev.off()
+      # count
+      dbobj <- dba.count(dbobj)
+      # plot from readcounts rather than peaks:
+      pdf(paste0(out, "correlatHM_readCounts.pdf"), width=7, height=7)
+      plot(dbobj)
+      dev.off()
+      # save information
+      info <- dba.show(dbobj)
+      # normalize
+      dbobj <- dba.normalize(dbobj)
+      # contrasts
+      dbobj <- dba.contrst(dbobj, minMembers=1)
+      contrasts <- dba.show(diff_WThox_KOv2, bContrasts = T)
+      # run analysis
+      dbobj <- dba.analyze(dbobj)
+      dba.show(dbobj, bContrasts=TRUE)
 
-diffBound <- data.frame(diffBound)
-write.csv("output/differentially_bound.csv")
+      diffBound <- dba.report(dbobj)
+      diffBound <- addGeneIDs(diffBound, "org.Hs.eg.db", "symbol")
 
+      diffBound <- data.frame(diffBound)
+      write.csv(paste0(out, "differentially_bound.csv"))
+}
