@@ -2,7 +2,7 @@
 library(ChIPseeker)
 library(GenomicFeatures)
 library(GenomicRanges)
-library(org.Mm.eg.db)
+library(org.Hs.eg.db)
 library(ChIPpeakAnno)
 library(TxDb.Hsapiens.UCSC.hg38.knownGene)
 library(openxlsx)
@@ -192,5 +192,14 @@ info <- dba.show(dbobj)
 dbobj <- dba.normalize(dbobj)
 # contrasts
 dbobj <- dba.contrst(dbobj, minMembers=1)
+contrasts <- dba.show(diff_WThox_KOv2, bContrasts = T)
+# run analysis
+dbobj <- dba.analyze(dbobj)
+dba.show(dbobj, bContrasts=TRUE)
 
+diffBound <- dba.report(dbobj)
+diffBound <- addGeneIDs(diffBound, "org.Hs.eg.db", "symbol")
+
+diffBound <- data.frame(diffBound)
+write.csv("output/differentially_bound.csv")
 
