@@ -171,4 +171,26 @@ ggsave(path, grid, width=10, height=5,  dpi = 300, device='pdf')
 #################################################################################################
 library(DiffBind)
 
-samples <- read.csv("samplesheet_-1a.csv")
+samples <- read.csv("samplesheet_all.csv")
+samples_no1a <- read.csv("samplesheet_-1a.csv")
+
+
+dbobj <- dba(sampleSheet=samples)
+
+pdf("output/correlatHM.pdf", width=7, height=7)
+plot(dbobj)
+dev.off()
+# count
+dbobj <- dba.count(dbobj)
+# plot from readcounts rather than peaks:
+pdf("output/correlatHM_readCounts.pdf", width=7, height=7)
+plot(dbobj)
+dev.off()
+# save information
+info <- dba.show(dbobj)
+# normalize
+dbobj <- dba.normalize(dbobj)
+# contrasts
+dbobj <- dba.contrst(dbobj, minMembers=1)
+
+
