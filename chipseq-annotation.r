@@ -170,3 +170,5 @@ ggsave(path, grid, width=10, height=5,  dpi = 300, device='pdf')
 # Differential peaks
 #################################################################################################
 library(DiffBind)
+
+samples <- read.csv("samplesheet_-1a.csv")
