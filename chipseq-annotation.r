@@ -15,7 +15,9 @@ data.folder <- "peaks"
 # get files
 peakFiles <- list.files(file.path(data.folder))
 peakFiles <- file.path(data.folder, peakFiles)
-
+#################################################################################################
+# annotation
+#################################################################################################
 ann <- lapply(peakFiles, annotatePeak, TxDb = txdb, genomicAnnotationPriority = c("Promoter", "5UTR", "3UTR", "Exon", "Intron", "Downstream", "Intergenic"), annoDb = "org.Hs.eg.db", tssRegion = c(-3000,3000)) 
 names(ann) <- gsub(".bed$", "", basename(peakFiles))
 peaknames <- names(ann)
@@ -66,7 +68,10 @@ pdf("output/tagMatrix_HM_5.pdf", width=10, height=5)
 tagHeatmap(tagMatrixList[c("5a_peaks", "5b_peaks")], xlim = c(-3000,3000), color = "darkorange")
 dev.off()
 
+
+#################################################################################################
 # enrichment
+#################################################################################################
 library(clusterProfiler)
 library(org.Hs.eg.db)
 
@@ -160,3 +165,8 @@ grobs <- lapply(pltlist,
 grid <- grid.arrange(grobs=grobs, ncol=3) 
 path <- file.path("output/grid.GO.MF.2.pdf")
 ggsave(path, grid, width=10, height=5,  dpi = 300, device='pdf')
+
+#################################################################################################
+# Differential peaks
+#################################################################################################
+library(DiffBind)

@@ -1,0 +1,11 @@
+SampleID,Tissue,Factor,Condition,Treatment,Replicate,bamReads,ControlID,bamControl,Peaks,PeakCaller
+1a,,,KO_v2,,1,bams/1a.bam,,,peaks/1a_peaks.bed,MACS
+1b,,,KO_v2,,2,bams/1b.bam,,,peaks/1b_peaks.bed,MACS
+2a,,,KO_v2,,3,bams/2a.bam,,,peaks/2a_peaks.bed,MACS
+2b,,,2KO,,1,bams/2b.bam,,,peaks/2b_peaks.bed,MACS
+3a,,,2KO,,2,bams/3a.bam,,,peaks/3a_peaks.bed,MACS
+3b,,,2KO,,3,bams/3b.bam,,,peaks/3b_peaks.bed,MACS
+4a,,,J_PB,,1,bams/4a.bam,,,peaks/4a_peaks.bed,MACS
+4b,,,J_PB,,2,bams/4b.bam,,,peaks/4b_peaks.bed,MACS
+5a,,,J_PB,,3,bams/5a.bam,,,peaks/5a_peaks.bed,MACS
+5b,,,WT,,1,bams/5b.bam,,,peaks/5b_peaks.bed,MACS
