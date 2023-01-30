@@ -171,9 +171,12 @@ ggsave(path, grid, width=10, height=5,  dpi = 300, device='pdf')
 #################################################################################################
 library(DiffBind)
 
-samples <- read.csv("samplesheet_all.csv")
-samples_no1a <- read.csv("samplesheet_-1a.csv")
-
+# samples <- read.csv("samplesheets/comp/samplesheet_all.csv")
+# samples_no1a <- read.csv("samplesheets/comp/samplesheet_-1a.csv")
+# get sample sheets 
+sheets <- list.files(file.path("samplesheets"))
+sheets <- file.path("samplesheets", sheets)
+sheets <- sheets[!file.info(sheets)$isdir]
 
 dbobj <- dba(sampleSheet=samples)
 
