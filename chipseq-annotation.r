@@ -193,6 +193,7 @@ for (i in 1:length(sheets)){
       # init obj
       dbobj <- dba(sampleSheet=samples)
       dbobj$config$yieldSize <- 500000
+      dbobj$config$cores <- 3
       # corr 
       pdf(paste0(out, "correlatHM.pdf"), width=7, height=7)
       plot(dbobj)
