@@ -1,6 +1,7 @@
 /output/
 /peaks/
 /bams/
+/bams_sampled/
 .Rproj.user
 *.Rproj
 Rplots.pdf

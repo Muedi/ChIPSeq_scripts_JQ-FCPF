@@ -41,3 +41,269 @@ Welcome to Bioconductor
     'citation("Biobase")', and for packages 'citation("pkgname")'.
 
 
+>> loading peak file...				 2023-01-31 23:48:31 
+>> preparing features information...		 2023-01-31 23:48:31 
+>> identifying nearest features...		 2023-01-31 23:48:36 
+>> calculating distance from peak to TSS...	 2023-01-31 23:48:37 
+>> assigning genomic annotation...		 2023-01-31 23:48:37 
+>> adding gene annotation...			 2023-01-31 23:49:02 
+'select()' returned 1:many mapping between keys and columns
+>> assigning chromosome lengths			 2023-01-31 23:49:02 
+>> done...					 2023-01-31 23:49:02 
+>> loading peak file...				 2023-01-31 23:49:02 
+>> preparing features information...		 2023-01-31 23:49:02 
+>> identifying nearest features...		 2023-01-31 23:49:02 
+>> calculating distance from peak to TSS...	 2023-01-31 23:49:03 
+>> assigning genomic annotation...		 2023-01-31 23:49:03 
+>> adding gene annotation...			 2023-01-31 23:49:06 
+'select()' returned 1:many mapping between keys and columns
+>> assigning chromosome lengths			 2023-01-31 23:49:06 
+>> done...					 2023-01-31 23:49:06 
+>> loading peak file...				 2023-01-31 23:49:06 
+>> preparing features information...		 2023-01-31 23:49:06 
+>> identifying nearest features...		 2023-01-31 23:49:06 
+>> calculating distance from peak to TSS...	 2023-01-31 23:49:07 
+>> assigning genomic annotation...		 2023-01-31 23:49:07 
+>> adding gene annotation...			 2023-01-31 23:49:09 
+'select()' returned 1:many mapping between keys and columns
+>> assigning chromosome lengths			 2023-01-31 23:49:10 
+>> done...					 2023-01-31 23:49:10 
+>> loading peak file...				 2023-01-31 23:49:10 
+>> preparing features information...		 2023-01-31 23:49:10 
+>> identifying nearest features...		 2023-01-31 23:49:10 
+>> calculating distance from peak to TSS...	 2023-01-31 23:49:10 
+>> assigning genomic annotation...		 2023-01-31 23:49:10 
+>> adding gene annotation...			 2023-01-31 23:49:13 
+'select()' returned 1:many mapping between keys and columns
+>> assigning chromosome lengths			 2023-01-31 23:49:13 
+>> done...					 2023-01-31 23:49:13 
+>> loading peak file...				 2023-01-31 23:49:13 
+>> preparing features information...		 2023-01-31 23:49:13 
+>> identifying nearest features...		 2023-01-31 23:49:13 
+>> calculating distance from peak to TSS...	 2023-01-31 23:49:14 
+>> assigning genomic annotation...		 2023-01-31 23:49:14 
+>> adding gene annotation...			 2023-01-31 23:49:17 
+'select()' returned 1:many mapping between keys and columns
+>> assigning chromosome lengths			 2023-01-31 23:49:17 
+>> done...					 2023-01-31 23:49:17 
+>> loading peak file...				 2023-01-31 23:49:17 
+>> preparing features information...		 2023-01-31 23:49:17 
+>> identifying nearest features...		 2023-01-31 23:49:17 
+>> calculating distance from peak to TSS...	 2023-01-31 23:49:18 
+>> assigning genomic annotation...		 2023-01-31 23:49:18 
+>> adding gene annotation...			 2023-01-31 23:49:21 
+'select()' returned 1:many mapping between keys and columns
+>> assigning chromosome lengths			 2023-01-31 23:49:21 
+>> done...					 2023-01-31 23:49:21 
+>> loading peak file...				 2023-01-31 23:49:21 
+>> preparing features information...		 2023-01-31 23:49:21 
+>> identifying nearest features...		 2023-01-31 23:49:21 
+>> calculating distance from peak to TSS...	 2023-01-31 23:49:21 
+>> assigning genomic annotation...		 2023-01-31 23:49:21 
+>> adding gene annotation...			 2023-01-31 23:49:25 
+'select()' returned 1:many mapping between keys and columns
+>> assigning chromosome lengths			 2023-01-31 23:49:25 
+>> done...					 2023-01-31 23:49:25 
+>> loading peak file...				 2023-01-31 23:49:25 
+>> preparing features information...		 2023-01-31 23:49:25 
+>> identifying nearest features...		 2023-01-31 23:49:25 
+>> calculating distance from peak to TSS...	 2023-01-31 23:49:25 
+>> assigning genomic annotation...		 2023-01-31 23:49:25 
+>> adding gene annotation...			 2023-01-31 23:49:28 
+'select()' returned 1:many mapping between keys and columns
+>> assigning chromosome lengths			 2023-01-31 23:49:28 
+>> done...					 2023-01-31 23:49:28 
+>> loading peak file...				 2023-01-31 23:49:28 
+>> preparing features information...		 2023-01-31 23:49:28 
+>> identifying nearest features...		 2023-01-31 23:49:28 
+>> calculating distance from peak to TSS...	 2023-01-31 23:49:29 
+>> assigning genomic annotation...		 2023-01-31 23:49:29 
+>> adding gene annotation...			 2023-01-31 23:49:32 
+'select()' returned 1:many mapping between keys and columns
+>> assigning chromosome lengths			 2023-01-31 23:49:32 
+>> done...					 2023-01-31 23:49:32 
+>> loading peak file...				 2023-01-31 23:49:32 
+>> preparing features information...		 2023-01-31 23:49:32 
+>> identifying nearest features...		 2023-01-31 23:49:32 
+>> calculating distance from peak to TSS...	 2023-01-31 23:49:32 
+>> assigning genomic annotation...		 2023-01-31 23:49:32 
+>> adding gene annotation...			 2023-01-31 23:49:36 
+'select()' returned 1:many mapping between keys and columns
+>> assigning chromosome lengths			 2023-01-31 23:49:36 
+>> done...					 2023-01-31 23:49:36 
+Warning messages:
+1: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': chrMT
+  - in 'y': chrY, chrM, chr1_GL383518v1_alt, chr1_GL383519v1_alt, chr1_GL383520v2_alt, chr1_KI270706v1_random, chr1_KI270707v1_random, chr1_KI270708v1_random, chr1_KI270709v1_random, chr1_KI270710v1_random, chr1_KI270711v1_random, chr1_KI270712v1_random, chr1_KI270713v1_random, chr1_KI270714v1_random, chr1_KI270759v1_alt, chr1_KI270760v1_alt, chr1_KI270761v1_alt, chr1_KI270762v1_alt, chr1_KI270763v1_alt, chr1_KI270764v1_alt, chr1_KI270765v1_alt, chr1_KI270766v1_alt, chr1_KI270892v1_alt, chr1_KN196472v1_fix, chr1_KN196473v1_fix, chr1_KN196474v1_fix, chr1_KN538360v1_fix, chr1_KN538361v1_fix, chr1_KQ031383v1_fix, chr1_KQ458382v1_alt, chr1_KQ458383v1_alt, chr1_KQ458384v1_alt, chr1_KQ983255v1_alt, chr1_KV880763v1_alt, chr1_KZ208904v1_alt, chr1_KZ208905v1_alt, chr1_KZ208906v1_fix, chr1_KZ559100v1_fix, chr2_GL383521v1_alt, chr2_GL383522v1_alt, chr2_GL582966v2_alt, chr2_KI270715v1_random, chr2_KI270716v1_ran [... truncated]
+2: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': chrMT
+  - in 'y': chrY, chrM, chr1_GL383518v1_alt, chr1_GL383519v1_alt, chr1_GL383520v2_alt, chr1_KI270706v1_random, chr1_KI270707v1_random, chr1_KI270708v1_random, chr1_KI270709v1_random, chr1_KI270710v1_random, chr1_KI270711v1_random, chr1_KI270712v1_random, chr1_KI270713v1_random, chr1_KI270714v1_random, chr1_KI270759v1_alt, chr1_KI270760v1_alt, chr1_KI270761v1_alt, chr1_KI270762v1_alt, chr1_KI270763v1_alt, chr1_KI270764v1_alt, chr1_KI270765v1_alt, chr1_KI270766v1_alt, chr1_KI270892v1_alt, chr1_KN196472v1_fix, chr1_KN196473v1_fix, chr1_KN196474v1_fix, chr1_KN538360v1_fix, chr1_KN538361v1_fix, chr1_KQ031383v1_fix, chr1_KQ458382v1_alt, chr1_KQ458383v1_alt, chr1_KQ458384v1_alt, chr1_KQ983255v1_alt, chr1_KV880763v1_alt, chr1_KZ208904v1_alt, chr1_KZ208905v1_alt, chr1_KZ208906v1_fix, chr1_KZ559100v1_fix, chr2_GL383521v1_alt, chr2_GL383522v1_alt, chr2_GL582966v2_alt, chr2_KI270715v1_random, chr2_KI270716v1_ran [... truncated]
+3: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': chrMT
+  - in 'y': chrY, chrM, chr1_GL383518v1_alt, chr1_GL383519v1_alt, chr1_GL383520v2_alt, chr1_KI270706v1_random, chr1_KI270707v1_random, chr1_KI270708v1_random, chr1_KI270709v1_random, chr1_KI270710v1_random, chr1_KI270711v1_random, chr1_KI270712v1_random, chr1_KI270713v1_random, chr1_KI270714v1_random, chr1_KI270759v1_alt, chr1_KI270760v1_alt, chr1_KI270761v1_alt, chr1_KI270762v1_alt, chr1_KI270763v1_alt, chr1_KI270764v1_alt, chr1_KI270765v1_alt, chr1_KI270766v1_alt, chr1_KI270892v1_alt, chr1_KN196472v1_fix, chr1_KN196473v1_fix, chr1_KN196474v1_fix, chr1_KN538360v1_fix, chr1_KN538361v1_fix, chr1_KQ031383v1_fix, chr1_KQ458382v1_alt, chr1_KQ458383v1_alt, chr1_KQ458384v1_alt, chr1_KQ983255v1_alt, chr1_KV880763v1_alt, chr1_KZ208904v1_alt, chr1_KZ208905v1_alt, chr1_KZ208906v1_fix, chr1_KZ559100v1_fix, chr2_GL383521v1_alt, chr2_GL383522v1_alt, chr2_GL582966v2_alt, chr2_KI270715v1_random, chr2_KI270716v1_ran [... truncated]
+4: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': chrMT
+  - in 'y': chrY, chrM, chr1_GL383518v1_alt, chr1_GL383519v1_alt, chr1_GL383520v2_alt, chr1_KI270706v1_random, chr1_KI270707v1_random, chr1_KI270708v1_random, chr1_KI270709v1_random, chr1_KI270710v1_random, chr1_KI270711v1_random, chr1_KI270712v1_random, chr1_KI270713v1_random, chr1_KI270714v1_random, chr1_KI270759v1_alt, chr1_KI270760v1_alt, chr1_KI270761v1_alt, chr1_KI270762v1_alt, chr1_KI270763v1_alt, chr1_KI270764v1_alt, chr1_KI270765v1_alt, chr1_KI270766v1_alt, chr1_KI270892v1_alt, chr1_KN196472v1_fix, chr1_KN196473v1_fix, chr1_KN196474v1_fix, chr1_KN538360v1_fix, chr1_KN538361v1_fix, chr1_KQ031383v1_fix, chr1_KQ458382v1_alt, chr1_KQ458383v1_alt, chr1_KQ458384v1_alt, chr1_KQ983255v1_alt, chr1_KV880763v1_alt, chr1_KZ208904v1_alt, chr1_KZ208905v1_alt, chr1_KZ208906v1_fix, chr1_KZ559100v1_fix, chr2_GL383521v1_alt, chr2_GL383522v1_alt, chr2_GL582966v2_alt, chr2_KI270715v1_random, chr2_KI270716v1_ran [... truncated]
+5: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': chrMT
+  - in 'y': chrY, chrM, chr1_GL383518v1_alt, chr1_GL383519v1_alt, chr1_GL383520v2_alt, chr1_KI270706v1_random, chr1_KI270707v1_random, chr1_KI270708v1_random, chr1_KI270709v1_random, chr1_KI270710v1_random, chr1_KI270711v1_random, chr1_KI270712v1_random, chr1_KI270713v1_random, chr1_KI270714v1_random, chr1_KI270759v1_alt, chr1_KI270760v1_alt, chr1_KI270761v1_alt, chr1_KI270762v1_alt, chr1_KI270763v1_alt, chr1_KI270764v1_alt, chr1_KI270765v1_alt, chr1_KI270766v1_alt, chr1_KI270892v1_alt, chr1_KN196472v1_fix, chr1_KN196473v1_fix, chr1_KN196474v1_fix, chr1_KN538360v1_fix, chr1_KN538361v1_fix, chr1_KQ031383v1_fix, chr1_KQ458382v1_alt, chr1_KQ458383v1_alt, chr1_KQ458384v1_alt, chr1_KQ983255v1_alt, chr1_KV880763v1_alt, chr1_KZ208904v1_alt, chr1_KZ208905v1_alt, chr1_KZ208906v1_fix, chr1_KZ559100v1_fix, chr2_GL383521v1_alt, chr2_GL383522v1_alt, chr2_GL582966v2_alt, chr2_KI270715v1_random, chr2_KI270716v1_ran [... truncated]
+6: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': chrMT
+  - in 'y': chrY, chrM, chr1_GL383518v1_alt, chr1_GL383519v1_alt, chr1_GL383520v2_alt, chr1_KI270706v1_random, chr1_KI270707v1_random, chr1_KI270708v1_random, chr1_KI270709v1_random, chr1_KI270710v1_random, chr1_KI270711v1_random, chr1_KI270712v1_random, chr1_KI270713v1_random, chr1_KI270714v1_random, chr1_KI270759v1_alt, chr1_KI270760v1_alt, chr1_KI270761v1_alt, chr1_KI270762v1_alt, chr1_KI270763v1_alt, chr1_KI270764v1_alt, chr1_KI270765v1_alt, chr1_KI270766v1_alt, chr1_KI270892v1_alt, chr1_KN196472v1_fix, chr1_KN196473v1_fix, chr1_KN196474v1_fix, chr1_KN538360v1_fix, chr1_KN538361v1_fix, chr1_KQ031383v1_fix, chr1_KQ458382v1_alt, chr1_KQ458383v1_alt, chr1_KQ458384v1_alt, chr1_KQ983255v1_alt, chr1_KV880763v1_alt, chr1_KZ208904v1_alt, chr1_KZ208905v1_alt, chr1_KZ208906v1_fix, chr1_KZ559100v1_fix, chr2_GL383521v1_alt, chr2_GL383522v1_alt, chr2_GL582966v2_alt, chr2_KI270715v1_random, chr2_KI270716v1_ran [... truncated]
+7: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': chrMT
+  - in 'y': chrY, chrM, chr1_GL383518v1_alt, chr1_GL383519v1_alt, chr1_GL383520v2_alt, chr1_KI270706v1_random, chr1_KI270707v1_random, chr1_KI270708v1_random, chr1_KI270709v1_random, chr1_KI270710v1_random, chr1_KI270711v1_random, chr1_KI270712v1_random, chr1_KI270713v1_random, chr1_KI270714v1_random, chr1_KI270759v1_alt, chr1_KI270760v1_alt, chr1_KI270761v1_alt, chr1_KI270762v1_alt, chr1_KI270763v1_alt, chr1_KI270764v1_alt, chr1_KI270765v1_alt, chr1_KI270766v1_alt, chr1_KI270892v1_alt, chr1_KN196472v1_fix, chr1_KN196473v1_fix, chr1_KN196474v1_fix, chr1_KN538360v1_fix, chr1_KN538361v1_fix, chr1_KQ031383v1_fix, chr1_KQ458382v1_alt, chr1_KQ458383v1_alt, chr1_KQ458384v1_alt, chr1_KQ983255v1_alt, chr1_KV880763v1_alt, chr1_KZ208904v1_alt, chr1_KZ208905v1_alt, chr1_KZ208906v1_fix, chr1_KZ559100v1_fix, chr2_GL383521v1_alt, chr2_GL383522v1_alt, chr2_GL582966v2_alt, chr2_KI270715v1_random, chr2_KI270716v1_ran [... truncated]
+8: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': chrMT
+  - in 'y': chrY, chrM, chr1_GL383518v1_alt, chr1_GL383519v1_alt, chr1_GL383520v2_alt, chr1_KI270706v1_random, chr1_KI270707v1_random, chr1_KI270708v1_random, chr1_KI270709v1_random, chr1_KI270710v1_random, chr1_KI270711v1_random, chr1_KI270712v1_random, chr1_KI270713v1_random, chr1_KI270714v1_random, chr1_KI270759v1_alt, chr1_KI270760v1_alt, chr1_KI270761v1_alt, chr1_KI270762v1_alt, chr1_KI270763v1_alt, chr1_KI270764v1_alt, chr1_KI270765v1_alt, chr1_KI270766v1_alt, chr1_KI270892v1_alt, chr1_KN196472v1_fix, chr1_KN196473v1_fix, chr1_KN196474v1_fix, chr1_KN538360v1_fix, chr1_KN538361v1_fix, chr1_KQ031383v1_fix, chr1_KQ458382v1_alt, chr1_KQ458383v1_alt, chr1_KQ458384v1_alt, chr1_KQ983255v1_alt, chr1_KV880763v1_alt, chr1_KZ208904v1_alt, chr1_KZ208905v1_alt, chr1_KZ208906v1_fix, chr1_KZ559100v1_fix, chr2_GL383521v1_alt, chr2_GL383522v1_alt, chr2_GL582966v2_alt, chr2_KI270715v1_random, chr2_KI270716v1_ran [... truncated]
+9: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': chrMT
+  - in 'y': chrY, chrM, chr1_GL383518v1_alt, chr1_GL383519v1_alt, chr1_GL383520v2_alt, chr1_KI270706v1_random, chr1_KI270707v1_random, chr1_KI270708v1_random, chr1_KI270709v1_random, chr1_KI270710v1_random, chr1_KI270711v1_random, chr1_KI270712v1_random, chr1_KI270713v1_random, chr1_KI270714v1_random, chr1_KI270759v1_alt, chr1_KI270760v1_alt, chr1_KI270761v1_alt, chr1_KI270762v1_alt, chr1_KI270763v1_alt, chr1_KI270764v1_alt, chr1_KI270765v1_alt, chr1_KI270766v1_alt, chr1_KI270892v1_alt, chr1_KN196472v1_fix, chr1_KN196473v1_fix, chr1_KN196474v1_fix, chr1_KN538360v1_fix, chr1_KN538361v1_fix, chr1_KQ031383v1_fix, chr1_KQ458382v1_alt, chr1_KQ458383v1_alt, chr1_KQ458384v1_alt, chr1_KQ983255v1_alt, chr1_KV880763v1_alt, chr1_KZ208904v1_alt, chr1_KZ208905v1_alt, chr1_KZ208906v1_fix, chr1_KZ559100v1_fix, chr2_GL383521v1_alt, chr2_GL383522v1_alt, chr2_GL582966v2_alt, chr2_KI270715v1_random, chr2_KI270716v1_ran [... truncated]
+10: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': chrMT
+  - in 'y': chrY, chrM, chr1_GL383518v1_alt, chr1_GL383519v1_alt, chr1_GL383520v2_alt, chr1_KI270706v1_random, chr1_KI270707v1_random, chr1_KI270708v1_random, chr1_KI270709v1_random, chr1_KI270710v1_random, chr1_KI270711v1_random, chr1_KI270712v1_random, chr1_KI270713v1_random, chr1_KI270714v1_random, chr1_KI270759v1_alt, chr1_KI270760v1_alt, chr1_KI270761v1_alt, chr1_KI270762v1_alt, chr1_KI270763v1_alt, chr1_KI270764v1_alt, chr1_KI270765v1_alt, chr1_KI270766v1_alt, chr1_KI270892v1_alt, chr1_KN196472v1_fix, chr1_KN196473v1_fix, chr1_KN196474v1_fix, chr1_KN538360v1_fix, chr1_KN538361v1_fix, chr1_KQ031383v1_fix, chr1_KQ458382v1_alt, chr1_KQ458383v1_alt, chr1_KQ458384v1_alt, chr1_KQ983255v1_alt, chr1_KV880763v1_alt, chr1_KZ208904v1_alt, chr1_KZ208905v1_alt, chr1_KZ208906v1_fix, chr1_KZ559100v1_fix, chr2_GL383521v1_alt, chr2_GL383522v1_alt, chr2_GL582966v2_alt, chr2_KI270715v1_random, chr2_KI270716v1_ran [... truncated]
+>> preparing start_site regions by gene... 2023-01-31 23:49:38
+>> preparing tag matrix...  2023-01-31 23:49:38 
+>> preparing start_site regions by gene... 2023-01-31 23:49:47
+>> preparing tag matrix...  2023-01-31 23:49:47 
+>> preparing start_site regions by gene... 2023-01-31 23:49:53
+>> preparing tag matrix...  2023-01-31 23:49:53 
+>> preparing start_site regions by gene... 2023-01-31 23:49:58
+>> preparing tag matrix...  2023-01-31 23:49:58 
+>> preparing start_site regions by gene... 2023-01-31 23:50:04
+>> preparing tag matrix...  2023-01-31 23:50:04 
+>> preparing start_site regions by gene... 2023-01-31 23:50:10
+>> preparing tag matrix...  2023-01-31 23:50:10 
+>> preparing start_site regions by gene... 2023-01-31 23:50:16
+>> preparing tag matrix...  2023-01-31 23:50:16 
+>> preparing start_site regions by gene... 2023-01-31 23:50:21
+>> preparing tag matrix...  2023-01-31 23:50:21 
+>> preparing start_site regions by gene... 2023-01-31 23:50:26
+>> preparing tag matrix...  2023-01-31 23:50:26 
+>> preparing start_site regions by gene... 2023-01-31 23:50:32
+>> preparing tag matrix...  2023-01-31 23:50:32 
+Warning messages:
+1: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': chrY, chrM, chr1_GL383518v1_alt, chr1_GL383519v1_alt, chr1_GL383520v2_alt, chr1_KI270706v1_random, chr1_KI270707v1_random, chr1_KI270708v1_random, chr1_KI270709v1_random, chr1_KI270710v1_random, chr1_KI270711v1_random, chr1_KI270712v1_random, chr1_KI270713v1_random, chr1_KI270714v1_random, chr1_KI270759v1_alt, chr1_KI270760v1_alt, chr1_KI270761v1_alt, chr1_KI270762v1_alt, chr1_KI270763v1_alt, chr1_KI270764v1_alt, chr1_KI270765v1_alt, chr1_KI270766v1_alt, chr1_KI270892v1_alt, chr1_KN196472v1_fix, chr1_KN196473v1_fix, chr1_KN196474v1_fix, chr1_KN538360v1_fix, chr1_KN538361v1_fix, chr1_KQ031383v1_fix, chr1_KQ458382v1_alt, chr1_KQ458383v1_alt, chr1_KQ458384v1_alt, chr1_KQ983255v1_alt, chr1_KV880763v1_alt, chr1_KZ208904v1_alt, chr1_KZ208905v1_alt, chr1_KZ208906v1_fix, chr1_KZ559100v1_fix, chr2_GL383521v1_alt, chr2_GL383522v1_alt, chr2_GL582966v2_alt, chr2_KI270715v1_random, chr2_KI270716v1_random, chr2_KI270767 [... truncated]
+2: In .merge_two_Seqinfo_objects(x, y) :
+  Each of the 2 combined objects has sequence levels not in the other:
+  - in 'x': chrY, chrM, chr1_GL383518v1_alt, chr1_GL383519v1_alt, chr1_GL383520v2_alt, chr1_KI270706v1_random, chr1_KI270707v1_random, chr1_KI270708v1_random, chr1_KI270709v1_random, chr1_KI270710v1_random, chr1_KI270711v1_random, chr1_KI270712v1_random, chr1_KI270713v1_random, chr1_KI270714v1_random, chr1_KI270759v1_alt, chr1_KI270760v1_alt, chr1_KI270761v1_alt, chr1_KI270762v1_alt, chr1_KI270763v1_alt, chr1_KI270764v1_alt, chr1_KI270765v1_alt, chr1_KI270766v1_alt, chr1_KI270892v1_alt, chr1_KN196472v1_fix, chr1_KN196473v1_fix, chr1_KN196474v1_fix, chr1_KN538360v1_fix, chr1_KN538361v1_fix, chr1_KQ031383v1_fix, chr1_KQ458382v1_alt, chr1_KQ458383v1_alt, chr1_KQ458384v1_alt, chr1_KQ983255v1_alt, chr1_KV880763v1_alt, chr1_KZ208904v1_alt, chr1_KZ208905v1_alt, chr1_KZ208906v1_fix, chr1_KZ559100v1_fix, chr2_GL383521v1_alt, chr2_GL383522v1_alt, chr2_GL582966v2_alt, chr2_KI270715v1_random, chr2_KI270716v1_random, chr2_KI270767 [... truncated]
+ [1] "1a_peaks" "1b_peaks" "2a_peaks" "2b_peaks" "3a_peaks" "3b_peaks"
+ [7] "4a_peaks" "4b_peaks" "5a_peaks" "5b_peaks"
+>> plotting figure...			 2023-01-31 23:50:36 
+>> plotting figure...			 2023-01-31 23:50:37 
+>> plotting figure...			 2023-01-31 23:50:38 
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+clusterProfiler v4.6.0  For help: https://yulab-smu.top/biomedical-knowledge-mining-book/
+
+If you use clusterProfiler in published research, please cite:
+T Wu, E Hu, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo, and G Yu. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. The Innovation. 2021, 2(3):100141
+
+Attaching package: 'clusterProfiler'
+
+The following object is masked from 'package:AnnotationDbi':
+
+    select
+
+The following object is masked from 'package:IRanges':
+
+    slice
+
+The following object is masked from 'package:S4Vectors':
+
+    rename
+
+The following object is masked from 'package:stats':
+
+    filter
+
+There were 20 warnings (use warnings() to see them)
+
+Attaching package: 'gridExtra'
+
+The following object is masked from 'package:Biobase':
+
+    combine
+
+The following object is masked from 'package:BiocGenerics':
+
+    combine
+
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: 'matrixStats'
+
+The following objects are masked from 'package:Biobase':
+
+    anyMissing, rowMedians
+
+
+Attaching package: 'MatrixGenerics'
+
+The following objects are masked from 'package:matrixStats':
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+The following object is masked from 'package:Biobase':
+
+    rowMedians
+
+ >>> DiffBind 3.8.4
+Warning message:
+In dir.create(out.dir) : 'output/diff' already exists
+1a   no_Treat  1 bed
+1b   no_Treat  2 bed
+2a   JQ1_FCPF+sg_h  1 bed
+2b   JQ1_FCPF+sg_h  2 bed
+Computing summits...
+Re-centering peaks...
+Reads will be counted as Paired-end.
+Reads will be counted as Paired-end.
+Reads will be counted as Paired-end.
+failed to open the port 11101, trying a new port...
+failed to open the port 11101, trying a new port...
+failed to open the port 11031, trying a new port...
+Reads will be counted as Paired-end.
+Reads will be counted as Paired-end.
+Error: Error processing one or more read files. Check warnings().
+In addition: Warning messages:
+1: In mclapply(arglist, fn, ..., mc.preschedule = TRUE, mc.allow.recursive = TRUE) :
+  scheduled core 3 encountered error in user code, all values of the job will be affected
+2:   error in evaluating the argument 'x' in selecting a method for function 'assay': wrong args for environment subassignment 
+Execution halted
