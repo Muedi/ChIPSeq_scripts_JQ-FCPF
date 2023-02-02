@@ -6,7 +6,7 @@ library(DiffBind)
 library(stringr)
 
 
-out.dir <- "output/diff"
+out.dir <- "output/diff/"
 dir.create(out.dir)
 
 # samples <- read.csv("samplesheets/comp/samplesheet_all.csv")
@@ -29,13 +29,13 @@ for (i in 1:length(sheets)){
       dbobj$config$yieldSize <- 500000
       dbobj$config$cores <- 3
       # corr 
-      pdf(paste0(out, "correlatHM.pdf"), width=7, height=7)
+      pdf(paste0(out, "_correlatHM.pdf"), width=7, height=7)
       plot(dbobj)
       dev.off()
       # count
       dbobj <- dba.count(dbobj)
       # plot from readcounts rather than peaks:
-      pdf(paste0(out, "correlatHM_readCounts.pdf"), width=7, height=7)
+      pdf(paste0(out, "_correlatHM_readCounts.pdf"), width=7, height=7)
       plot(dbobj)
       dev.off()
       # save information
@@ -49,9 +49,10 @@ for (i in 1:length(sheets)){
       dbobj <- dba.analyze(dbobj)
       dba.show(dbobj, bContrasts=TRUE)
 
-      diffBound <- dba.report(dbobj)
-      diffBound <- addGeneIDs(diffBound, "org.Hs.eg.db", "symbol")
+      diffBound <- dba.report(dbobj, contrast=1, th=0.1, bUsePval=T)
+      # diffBound <- addGeneIDs(diffBound, "org.Hs.eg.db", "symbol")
 
       diffBound <- data.frame(diffBound)
-      write.csv(paste0(out, "differentially_bound.csv"))
+      write.csv(diffBound, paste0(out, "_differentially_bound.csv"))
+
 }
