@@ -22,8 +22,8 @@ sheets <- sheets[!file.info(sheets)$isdir]
 names(sheets) <- str_extract_all(sheets, "[0-9]v[0-9]")
 
 
-#for (i in 1:length(sheets)){
- for (i in 1){
+for (i in 1:length(sheets)){
+# for (i in 1){
 
       # make output
       out <- paste0(out.dir, names(sheets[i]))
