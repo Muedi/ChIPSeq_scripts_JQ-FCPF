@@ -7,8 +7,10 @@ library(stringr)
 library(ChIPseeker)
 library(org.Hs.eg.db)
 library(TxDb.Hsapiens.UCSC.hg38.knownGene)
-txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
+library(clusterProfiler)
+library(ggplot2)
 
+txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 
 out.dir <- "output/diff/"
 dir.create(out.dir)
@@ -68,5 +70,38 @@ for (i in 1:length(sheets)){
 
       diffBound <- data.frame(diffBound)
       write.csv(diffBound, paste0(out, "_differentially_bound.csv"))
+
+      entrez <- diffBound$geneId
+
+      ego <- enrichGO(gene = entrez, 
+                        keyType = "ENTREZID", 
+                        OrgDb = org.Hs.eg.db, 
+                        ont = "BP", 
+                        pAdjustMethod = "BH", 
+                        qvalueCutoff = 0.05, 
+                        readable = TRUE)
+
+      # BP_list[peaknames[i]] <- ego
+      cluster_summary <- data.frame(ego)   
+      write.csv(cluster_summary, paste0(out, "clusterProfiler_BP_", ".csv"))        
+
+      plt <- dotplot(ego, x="count", showCategory=20, font.size=10, )
+      ggsave(paste0(out, "clusterProfiler_BP_", ".pdf"), plot=plt, dpi=300, width=6, height=7)
+
+
+      ego <- enrichGO(gene = entrez, 
+                        keyType = "ENTREZID", 
+                        OrgDb = org.Hs.eg.db, 
+                        ont = "MF", 
+                        pAdjustMethod = "BH", 
+                        qvalueCutoff = 0.05, 
+                        readable = TRUE)
+
+      # MF_list[peaknames[i]] <- ego
+      cluster_summary <- data.frame(ego)   
+      write.csv(cluster_summary, paste0(out, "clusterProfiler_MF_", ".csv"))        
+
+      plt <- dotplot(ego, x="count", showCategory=20, font.size=10, )
+      ggsave(paste0(out, "clusterProfiler_MF_", ".pdf"), plot=plt, dpi=300, width=6, height=7)
 
 }
