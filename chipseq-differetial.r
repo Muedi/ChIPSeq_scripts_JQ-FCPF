@@ -4,6 +4,10 @@
 #################################################################################################
 library(DiffBind)
 library(stringr)
+library(ChIPseeker)
+library(org.Hs.eg.db)
+library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 
 
 out.dir <- "output/diff/"
@@ -18,15 +22,15 @@ sheets <- sheets[!file.info(sheets)$isdir]
 names(sheets) <- str_extract_all(sheets, "[0-9]v[0-9]")
 
 
-for (i in 1:length(sheets)){
-# for (i in 1){
+#for (i in 1:length(sheets)){
+ for (i in 1){
 
       # make output
       out <- paste0(out.dir, names(sheets[i]))
       samples <- read.csv(sheets[[i]])
       # init obj
       dbobj <- dba(sampleSheet=samples)
-      dbobj$config$yieldSize <- 500000
+      dbobj$config$yieldSize <- 400000
       dbobj$config$cores <- 3
       # corr 
       pdf(paste0(out, "_correlatHM.pdf"), width=7, height=7)
@@ -50,7 +54,17 @@ for (i in 1:length(sheets)){
       dba.show(dbobj, bContrasts=TRUE)
 
       diffBound <- dba.report(dbobj, contrast=1, th=0.1, bUsePval=T)
-      # diffBound <- addGeneIDs(diffBound, "org.Hs.eg.db", "symbol")
+      diffBound <- annotatePeak(diffBound, TxDb = txdb,
+            genomicAnnotationPriority = c("Promoter",
+                                          "5UTR",
+                                          "3UTR",
+                                          "Exon",
+                                          "Intron",
+                                          "Downstream",
+                                          "Intergenic"),
+            annoDb = "org.Hs.eg.db",
+            tssRegion = c(-3000,3000)) 
+
 
       diffBound <- data.frame(diffBound)
       write.csv(diffBound, paste0(out, "_differentially_bound.csv"))
