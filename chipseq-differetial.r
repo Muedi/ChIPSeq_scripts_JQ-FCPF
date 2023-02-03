@@ -10,6 +10,7 @@ library(TxDb.Hsapiens.UCSC.hg38.knownGene)
 library(clusterProfiler)
 library(ggplot2)
 
+
 txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 
 out.dir <- "output/diff/"
@@ -24,8 +25,8 @@ sheets <- sheets[!file.info(sheets)$isdir]
 names(sheets) <- str_extract_all(sheets, "[0-9]v[0-9]")
 
 
-for (i in 1:length(sheets)){
-# for (i in 1){
+# for (i in 1:length(sheets)){
+for (i in 1){
 
       # make output
       out <- paste0(out.dir, names(sheets[i]))
@@ -80,6 +81,7 @@ for (i in 1:length(sheets)){
                         pAdjustMethod = "BH", 
                         qvalueCutoff = 0.05, 
                         readable = TRUE)
+      if (dim(ego)[1] > 0) {
 
       # BP_list[peaknames[i]] <- ego
       cluster_summary <- data.frame(ego)   
@@ -87,6 +89,9 @@ for (i in 1:length(sheets)){
 
       plt <- dotplot(ego, x="count", showCategory=20, font.size=10, )
       ggsave(paste0(out, "clusterProfiler_BP_", ".pdf"), plot=plt, dpi=300, width=6, height=7)
+      } else {
+            print(paste0(names(sheets[i]), ": no enrichment found"))
+      }
 
 
       ego <- enrichGO(gene = entrez, 
@@ -96,6 +101,7 @@ for (i in 1:length(sheets)){
                         pAdjustMethod = "BH", 
                         qvalueCutoff = 0.05, 
                         readable = TRUE)
+      if (dim(ego)[1] > 0) {
 
       # MF_list[peaknames[i]] <- ego
       cluster_summary <- data.frame(ego)   
@@ -103,5 +109,8 @@ for (i in 1:length(sheets)){
 
       plt <- dotplot(ego, x="count", showCategory=20, font.size=10, )
       ggsave(paste0(out, "clusterProfiler_MF_", ".pdf"), plot=plt, dpi=300, width=6, height=7)
+      } else {
+            print(paste0(names(sheets[i]), ": no enrichment found"))
+      }
 
 }
