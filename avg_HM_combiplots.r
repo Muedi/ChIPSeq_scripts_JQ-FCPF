@@ -15,10 +15,6 @@ txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 
 data.folder <- "peaks"
 
-# genes of special interest
-gene_list <- c("CMYC", "MYC",  "JUN", "YY1", "E2F3", "GSTO1", "NOP56", "NUDT17")
-
-
 # get files
 peakFiles <- list.files(file.path(data.folder))
 peakFiles <- file.path(data.folder, peakFiles)
@@ -42,4 +38,5 @@ for (i in 1:length(peaknames)) {
     
     out <- grid.arrange(grobs = list(avg, hm), ncol=2, top=peaknames[i])
     ggsave(paste0("output/avg_hm_plots/", peaknames[i], ".png"), plot=out, width=10, height=4, dpi=300)
+    ggsave(paste0("output/avg_hm_plots/", peaknames[i], ".pdf"), plot=out, width=10, height=4, dpi=300)
 }
