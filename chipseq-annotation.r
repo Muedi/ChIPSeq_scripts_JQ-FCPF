@@ -15,7 +15,7 @@ txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 data.folder <- "peaks"
 
 # genes of special interest
-gene_list <- c("CMYC", "MYC",  "JUN", "YY1", "E2F3")
+gene_list <- c("CMYC", "MYC",  "JUN", "YY1", "E2F3", "GSTO1", "NOP56", "NUDT17")
 
 
 # get files
@@ -197,7 +197,7 @@ ggsave("output/genes_of_interest/dist_tss_bar.pdf", plot=plt, width=4, height=4)
 # Read count frequency respect to the TSS
 prom <- getPromoters(TxDb = txdb, upstream = 3000, downstream = 3000)
 tagMatrixList <- lapply(ann_sub_list, getTagMatrix, windows = prom)
- tagMatrixList <- tagMatrixList[2:8]
+ tagMatrixList <- tagMatrixList[2:8] # drop length 0
 
 plot <- plotAvgProf(tagMatrixList, xlim = c(-3000,3000))
 ggsave("output/genes_of_interest/avgProf_TSS.pdf", plot=plot, width=10, height=5, device="pdf")
