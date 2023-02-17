@@ -104,7 +104,7 @@ options(ucscChromosomeNames=FALSE)
 #     break
 # }
 viewerStyle <- trackViewerStyle()
-setTrackViewerStyleParam(viewerStyle, "margin", c(.07, .04, .01, .02))
+setTrackViewerStyleParam(viewerStyle, "margin", c(.07, .04, .01, .03))
 setTrackViewerStyleParam(viewerStyle, "xaxis", T)
 # setTrackViewerStyleParam(viewerStyle, "autolas", T)
 
@@ -140,27 +140,35 @@ for (i in 1:length(gene_list)) {
     setTrackStyleParam(gTrack, "color", "darkblue")
     setTrackStyleParam(gTrack, "height", .001)
     # setTrackStyleParam(gTrack, "ylabpos", "right")
+    setTrackStyleParam(gTrack, "ylabgp", list("cex"=0.6, fontface="bold"))
 
     # samples: (1b, 3a, 4b, 2b and 5b
     NT <- importScore(bwfiles["1b"], format="BigWig", ranges=gr)
     setTrackStyleParam(NT, "color", "black")
     setTrackStyleParam(NT, "height", .1998)
-    
+    setTrackStyleParam(NT, "ylabgp", list("cex"=0.6, fontface="bold"))
+    setTrackYaxisParam(NT, "label", T)
+    setTrackYaxisParam(NT, "gp", list("cex"=0.6))
+
     JQ1_FCPF_low <- importScore(bwfiles["3a"], format="BigWig", ranges=gr)
     setTrackStyleParam(JQ1_FCPF_low, "color", "darkorange")
     setTrackStyleParam(JQ1_FCPF_low, "height", .1998)
+    setTrackStyleParam(JQ1_FCPF_low, "ylabgp", list("cex"=0.6, fontface="bold"))
     
     sgRNA_JQ1_FCPF_low <- importScore(bwfiles["4b"], format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNA_JQ1_FCPF_low, "color", "#295D8A")
     setTrackStyleParam(sgRNA_JQ1_FCPF_low, "height", .1998)
+    setTrackStyleParam(sgRNA_JQ1_FCPF_low, "ylabgp", list("cex"=0.6, fontface="bold"))
     
     sgRNA_JQ1_FCPF_high <- importScore(bwfiles["2b"], format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNA_JQ1_FCPF_high, "color", "#295D8A")
     setTrackStyleParam(sgRNA_JQ1_FCPF_high, "height", .1998)
+    setTrackStyleParam(sgRNA_JQ1_FCPF_high, "ylabgp", list("cex"=0.6, fontface="bold"))
     
     sgRNQ_JQ1_high <- importScore(bwfiles["5a"],  format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNQ_JQ1_high, "color", "#9400D3")
     setTrackStyleParam(sgRNQ_JQ1_high, "height", .1998)
+    setTrackStyleParam(sgRNQ_JQ1_high, "ylabgp", list("cex"=0.6, fontface="bold"))
 
 
     tl <- trackList(gTrack,
@@ -195,17 +203,25 @@ for (i in 1:length(gene_list)) {
         setTrackStyleParam(tl[[i]], "ylim", c(0, max))
     }
     # flip y-axis position
-    # for(i in 1:length(tl)){
-    #     setTrackYaxisParam(tl[[i]], "main", FALSE)
-    # }
+    for(i in 1:length(tl)){
+        setTrackYaxisParam(tl[[i]], "main", FALSE)
+    #         setTrackYaxisParam(NT, "label", T)
+    # setTrackYaxisParam(NT, "at", c(0.2, 0.8))
+    # setTrackYaxisParam(NT, "gp", list("cex"=0.6))
+
+    }
 
     # svg(paste0("output/tracks/", symbol ,".svg"), width= 3000, height = 2200)
     # viewTracks(tl, gr=gr, autoOptimizeStyle=TRUE, newpage=FALSE)
     # dev.off()
     png(paste0("output/tracks/", symbol ,".png"), width=3000, height = 2200, res=300)
-    viewTracks(tl, gr=gr, viewerStyle=viewerStyle)
+    viewTracks(tl, gr=gr, viewerStyle=viewerStyle) #, smooth=T)
     dev.off()
-   break
+
+    svg(paste0("output/tracks/", symbol ,".svg"), width=10, height = 7.3)
+    viewTracks(tl, gr=gr, viewerStyle=viewerStyle) #, smooth=T)
+    dev.off()
+   
 }
 
 
