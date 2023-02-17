@@ -104,12 +104,11 @@ options(ucscChromosomeNames=FALSE)
 #     break
 # }
 viewerStyle <- trackViewerStyle()
-setTrackViewerStyleParam(viewerStyle, "margin", c(.05, .05, .01, .03))
+setTrackViewerStyleParam(viewerStyle, "margin", c(.07, .04, .01, .02))
 setTrackViewerStyleParam(viewerStyle, "xaxis", T)
-setTrackViewerStyleParam(viewerStyle, "autolas", T)
+# setTrackViewerStyleParam(viewerStyle, "autolas", T)
 
 
-    viewTracks(tl, gr=gr, viewerStyle=viewerStyle)
 
 # trackviewer
 
@@ -138,17 +137,31 @@ for (i in 1:length(gene_list)) {
                          org.Hs.eg.db,
                          gr=gr)
     gTrack <- geneTrack(id,TxDb.Hsapiens.UCSC.hg38.knownGene, symbol)[[1]]
+    setTrackStyleParam(gTrack, "color", "darkblue")
+    setTrackStyleParam(gTrack, "height", .001)
+    # setTrackStyleParam(gTrack, "ylabpos", "right")
+
     # samples: (1b, 3a, 4b, 2b and 5b
     NT <- importScore(bwfiles["1b"], format="BigWig", ranges=gr)
     setTrackStyleParam(NT, "color", "black")
+    setTrackStyleParam(NT, "height", .1998)
+    
     JQ1_FCPF_low <- importScore(bwfiles["3a"], format="BigWig", ranges=gr)
     setTrackStyleParam(JQ1_FCPF_low, "color", "darkorange")
+    setTrackStyleParam(JQ1_FCPF_low, "height", .1998)
+    
     sgRNA_JQ1_FCPF_low <- importScore(bwfiles["4b"], format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNA_JQ1_FCPF_low, "color", "#295D8A")
+    setTrackStyleParam(sgRNA_JQ1_FCPF_low, "height", .1998)
+    
     sgRNA_JQ1_FCPF_high <- importScore(bwfiles["2b"], format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNA_JQ1_FCPF_high, "color", "#295D8A")
+    setTrackStyleParam(sgRNA_JQ1_FCPF_high, "height", .1998)
+    
     sgRNQ_JQ1_high <- importScore(bwfiles["5a"],  format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNQ_JQ1_high, "color", "#9400D3")
+    setTrackStyleParam(sgRNQ_JQ1_high, "height", .1998)
+
 
     tl <- trackList(gTrack,
                     sgRNQ_JQ1_high,
@@ -192,8 +205,8 @@ for (i in 1:length(gene_list)) {
     png(paste0("output/tracks/", symbol ,".png"), width=3000, height = 2200, res=300)
     viewTracks(tl, gr=gr, viewerStyle=viewerStyle)
     dev.off()
-   
+   break
 }
 
 
-    browseTracks(tl, gr=gr, autoOptimizeStyle=TRUE, newpage=FALSE)
+#    browseTracks(tl, gr=gr, autoOptimizeStyle=TRUE, newpage=FALSE)
