@@ -109,7 +109,8 @@ setTrackViewerStyleParam(viewerStyle, "xaxis", T)
 # setTrackViewerStyleParam(viewerStyle, "autolas", T)
 
 
-
+max_overall <- 0
+max <- 215
 # trackviewer
 
 for (i in 1:length(gene_list)) {
@@ -188,28 +189,32 @@ for (i in 1:length(gene_list)) {
     )
 
     # get max score
-    max <- 0
-    for(i in 1:length(tl)){
-        #print(tl[[i]]$dat$score)
-        new <- max(tl[[i]]$dat$score)
-        if (new > max){
-            max <- new
-        }
-    }
+    # max <- 0
+    # for(i in 1:length(tl)){
+    #     #print(tl[[i]]$dat$score)
+    #     new <- max(tl[[i]]$dat$score)
+    #     if (new > max){
+    #         max <- new
+    #     }
+    #     if (new > max_overall){
+    #         max_overall <- new
+    #     }
+        
+    # }
 
 
     # fixed y-axis
-    for(i in 1:length(tl)){
+    for(i in 2:length(tl)){
         setTrackStyleParam(tl[[i]], "ylim", c(0, max))
     }
     # flip y-axis position
-    for(i in 1:length(tl)){
-        setTrackYaxisParam(tl[[i]], "main", FALSE)
-    #         setTrackYaxisParam(NT, "label", T)
-    # setTrackYaxisParam(NT, "at", c(0.2, 0.8))
-    # setTrackYaxisParam(NT, "gp", list("cex"=0.6))
+    # for(i in 1:length(tl)){
+    #     setTrackYaxisParam(tl[[i]], "main", FALSE)
+    # #         setTrackYaxisParam(NT, "label", T)
+    # # setTrackYaxisParam(NT, "at", c(0.2, 0.8))
+    # # setTrackYaxisParam(NT, "gp", list("cex"=0.6))
 
-    }
+    # }
 
     # svg(paste0("output/tracks/", symbol ,".svg"), width= 3000, height = 2200)
     # viewTracks(tl, gr=gr, autoOptimizeStyle=TRUE, newpage=FALSE)
