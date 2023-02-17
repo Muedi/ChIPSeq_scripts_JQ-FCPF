@@ -11,14 +11,20 @@ library(gridExtra)
 library(Gviz)
 library(tidyverse)
 library(stringr)
-library(org.Hs.eg.db)
+library(biomaRt)
+library(trackViewer)
 
 # genes of special interest
-gene_list <- c( "MYC",  "JUN", "YY1", "E2F3", "GSTO1", "NOP56", "NUDT17", "FOS")
 gene_entrz <- AnnotationDbi::select(org.Hs.eg.db, 
-                                    keys = gene_list,
+                                    keys = c( "MYC",  "JUN", "YY1", "E2F3", "GSTO1", "NOP56", "NUDT17", "FOS"),
                                     columns = "ENTREZID",
                                     keytype="SYMBOL")
+
+
+gene_list <- list( "MYC",  "JUN", "YY1", "E2F3", "GSTO1", "NOP56", "NUDT17", "FOS")
+# mart to  get locations
+ensembl <- useMart("ensembl")
+ensembl <- useDataset("hsapiens_gene_ensembl",mart=ensembl)
 
 txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 
@@ -97,49 +103,97 @@ options(ucscChromosomeNames=FALSE)
 
 #     break
 # }
+viewerStyle <- trackViewerStyle()
+setTrackViewerStyleParam(viewerStyle, "margin", c(.05, .05, .01, .03))
+setTrackViewerStyleParam(viewerStyle, "xaxis", T)
+setTrackViewerStyleParam(viewerStyle, "autolas", T)
 
+
+    viewTracks(tl, gr=gr, viewerStyle=viewerStyle)
 
 # trackviewer
-library(trackViewer)
+
 for (i in 1:length(gene_list)) {
-    symbol <- gene_list[i]
     symbol <- "MYC"
+    symbol <- gene_list[[i]]
     id <- get(symbol, org.Hs.egSYMBOL2EG)
 
-    # get adress
-    # chr should be singular after unqiue, while multiple starts/ends remain
-    # use the min start and the max end to cover the complete gene
-    chr <- txdb_gene_interest %>%
-        dplyr::filter(GENEID == id) %>%
-        pull("EXONCHROM") %>%
-        unique() 
-    start <- txdb_gene_interest %>%
-        dplyr::filter(GENEID == id) %>%
-        pull("EXONSTART") %>%
-        unique() %>% min() - 2000
-    end <- txdb_gene_interest %>%
-        dplyr::filter(GENEID == id) %>%
-        pull("EXONEND") %>%
-        unique() %>% max() + 2000
-    
-    gr = GRanges(chr, IRanges(start, end), strand="-")
-    
+    # get loc
+    coords <- getBM(attributes=c('chromosome_name', 'start_position', 'end_position', 'strand'),
+      filters=c('hgnc_symbol'),
+      values=list(symbol),
+      mart=ensembl)
+    chr <- paste0("chr", coords$chromosome_name)
+    start <- coords$start_position - 10000
+    end <- coords$end_position + 10000 
+    strand <- coords$strand
+
+
+    # range
+    gr = GRanges(chr, IRanges(start, end), strand=strand)
+    # ideogram
+    # ideo <- loadIdeogram("hg38", chrom=chr, ranges=IRanges(start, end))
+    # gene model and track
     trs <- geneModelFromTxdb(TxDb.Hsapiens.UCSC.hg38.knownGene,
                          org.Hs.eg.db,
                          gr=gr)
     gTrack <- geneTrack(id,TxDb.Hsapiens.UCSC.hg38.knownGene, symbol)[[1]]
-
+    # samples: (1b, 3a, 4b, 2b and 5b
     NT <- importScore(bwfiles["1b"], format="BigWig", ranges=gr)
-    
-    JQ1_high <- importScore(bwfiles["5a"],  format="BigWig", ranges=gr)
+    setTrackStyleParam(NT, "color", "black")
+    JQ1_FCPF_low <- importScore(bwfiles["3a"], format="BigWig", ranges=gr)
+    setTrackStyleParam(JQ1_FCPF_low, "color", "darkorange")
+    sgRNA_JQ1_FCPF_low <- importScore(bwfiles["4b"], format="BigWig", ranges=gr)
+    setTrackStyleParam(sgRNA_JQ1_FCPF_low, "color", "#295D8A")
+    sgRNA_JQ1_FCPF_high <- importScore(bwfiles["2b"], format="BigWig", ranges=gr)
+    setTrackStyleParam(sgRNA_JQ1_FCPF_high, "color", "#295D8A")
+    sgRNQ_JQ1_high <- importScore(bwfiles["5a"],  format="BigWig", ranges=gr)
+    setTrackStyleParam(sgRNQ_JQ1_high, "color", "#9400D3")
 
-    # NT_algn <- importBam(bamfiles["1b"])
+    tl <- trackList(gTrack,
+                    sgRNQ_JQ1_high,
+                    sgRNA_JQ1_FCPF_high,
+                    sgRNA_JQ1_FCPF_low,
+                    JQ1_FCPF_low,
+                    NT
+    )
     
-    vp <- viewTracks(trackList(gTrack, NT, JQ1_high), gr=gr, autoOptimizeStyle=TRUE, newpage=FALSE)
-    svg("output/test.svg", width= 7, height = 5)
-    print(vp)
+    names(tl) <- c(symbol,
+                    "sgRNQ-JQ1 high",
+                    "sgRNA-JQ1_FCPF high",
+                    "sgRNA-JQ1_FCPF low",
+                    "JQ1-FCPF low",
+                    "NT"
+    )
+
+    # get max score
+    max <- 0
+    for(i in 1:length(tl)){
+        #print(tl[[i]]$dat$score)
+        new <- max(tl[[i]]$dat$score)
+        if (new > max){
+            max <- new
+        }
+    }
+
+
+    # fixed y-axis
+    for(i in 1:length(tl)){
+        setTrackStyleParam(tl[[i]], "ylim", c(0, max))
+    }
+    # flip y-axis position
+    # for(i in 1:length(tl)){
+    #     setTrackYaxisParam(tl[[i]], "main", FALSE)
+    # }
+
+    # svg(paste0("output/tracks/", symbol ,".svg"), width= 3000, height = 2200)
+    # viewTracks(tl, gr=gr, autoOptimizeStyle=TRUE, newpage=FALSE)
+    # dev.off()
+    png(paste0("output/tracks/", symbol ,".png"), width=3000, height = 2200, res=300)
+    viewTracks(tl, gr=gr, viewerStyle=viewerStyle)
     dev.off()
-    break
+   
 }
 
 
+    browseTracks(tl, gr=gr, autoOptimizeStyle=TRUE, newpage=FALSE)
