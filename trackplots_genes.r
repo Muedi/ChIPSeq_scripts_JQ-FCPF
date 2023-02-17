@@ -10,9 +10,11 @@ library(clusterProfiler)
 library(gridExtra)
 library(Gviz)
 library(tidyverse)
+library(stringr)
+
 
 # genes of special interest
-gene_list <- c( "MYC",  "JUN", "YY1", "E2F3", "GSTO1", "NOP56", "NUDT17")
+gene_list <- c( "MYC",  "JUN", "YY1", "E2F3", "GSTO1", "NOP56", "NUDT17", "FOS")
 gene_entrz <- AnnotationDbi::select(org.Hs.eg.db, 
                                     keys = gene_list,
                                     columns = "ENTREZID",
@@ -23,7 +25,8 @@ txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 peak.folder <- "peaks"
 bam.folder <- "bams"
 
-gtrack <- GenomeAxisTrack()
+axistrack <- GenomeAxisTrack()
+
 
 txdb_gene_interest <- AnnotationDbi::select(txdb, 
                                             keys = gene_entrz$ENTREZID,
@@ -31,8 +34,20 @@ txdb_gene_interest <- AnnotationDbi::select(txdb,
                                             keytype="GENEID")
 txdb_gene_interest <- txdb_gene_interest %>% as_tibble()
 
+bwfiles <- list.files("bams", pattern = ".bw$", full.names=T)
+names(bwfiles) <- str_extract(bwfiles, "[0-9][ab]")
+
+bamfiles <- list.files("bams", pattern = ".bam$", full.names=T)
+names(bamfiles) <- str_extract(bamfiles, "[0-9][ab]")
+
+
+sample_cov <- lapply(bwfiles, AlignmentsTrack, isPaired=F, ucscChromosomeNames=FALSE)
+
+options(ucscChromosomeNames=FALSE)
+
 for (i in 1:length(gene_list)) {
     symbol <- gene_list[i]
+    symbol <- "MYC"
     id <- gene_entrz[gene_entrz$SYMBOL == symbol,"ENTREZID"]
 
     # get adress
@@ -45,18 +60,43 @@ for (i in 1:length(gene_list)) {
     start <- txdb_gene_interest %>%
         dplyr::filter(GENEID == id) %>%
         pull("EXONSTART") %>%
-        unique()
+        unique() %>% min() - 2000
     end <- txdb_gene_interest %>%
         dplyr::filter(GENEID == id) %>%
         pull("EXONEND") %>%
-        unique()
-    txTr <- GeneRegionTrack(txdb,
-                            chromosome = chr, 
-                            start = min(start),
-                            end = max(end))
-    plotTracks(c(gtrack, txTr))
+        unique() %>% max() + 2000
+    
+    gtTrack <- GeneRegionTrack(txdb,
+                chromosome=chr,
+                start=min(start),
+                end=max(end),
+                collapseTranscripts="meta",
+                transcriptAnnotation="name", 
+                showId=TRUE)
+
+    knownGenes <- UcscTrack(genome = "hg38", chromosome = chr,
+                        track = "NCBI RefSeq", from = start, to = end,
+                        trackType = "GeneRegionTrack",
+                        rstarts = "exonStarts", rends = "exonEnds",
+                        gene = "name", symbol = "name",
+                        transcript = "name", strand = "strand",
+                        fill = "#8282d2", name = "UCSC Genes")
+
+
+    NT <- DataTrack(bwfiles["1b"], type="hist" , window = -1, windowSize = 250)
+    
+    JQ1_high <- DataTrack(bwfiles["5a"], type="hist" , window = -1, windowSize = 250)
+
+    NT_algn <- AlignmentsTrack(bamfiles["1b"], 
+                                chromosome=chr,
+                                from = min(start),
+                                to = max(end))
+    
+    plt <- plotTracks(c(axistrack, NT, JQ1_high, knownGenes), from = min(start), to = max(end))
+
+
+    break
 }
 
 
 
-plotTracks(c(gtrack, txTr))
