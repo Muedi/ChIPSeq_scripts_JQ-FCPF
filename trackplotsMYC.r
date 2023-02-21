@@ -51,58 +51,6 @@ sample_cov <- lapply(bwfiles, AlignmentsTrack, isPaired=F, ucscChromosomeNames=F
 
 options(ucscChromosomeNames=FALSE)
 
-# for (i in 1:length(gene_list)) {
-#     symbol <- gene_list[i]
-#     symbol <- "MYC"
-#     id <- gene_entrz[gene_entrz$SYMBOL == symbol,"ENTREZID"]
-
-#     # get adress
-#     # chr should be singular after unqiue, while multiple starts/ends remain
-#     # use the min start and the max end to cover the complete gene
-#     chr <- txdb_gene_interest %>%
-#         dplyr::filter(GENEID == id) %>%
-#         pull("EXONCHROM") %>%
-#         unique() 
-#     start <- txdb_gene_interest %>%
-#         dplyr::filter(GENEID == id) %>%
-#         pull("EXONSTART") %>%
-#         unique() %>% min() - 2000
-#     end <- txdb_gene_interest %>%
-#         dplyr::filter(GENEID == id) %>%
-#         pull("EXONEND") %>%
-#         unique() %>% max() + 2000
-    
-#     gtTrack <- GeneRegionTrack(txdb,
-#                 chromosome=chr,
-#                 start=min(start),
-#                 end=max(end),
-#                 collapseTranscripts="meta",
-#                 transcriptAnnotation="name", 
-#                 showId=TRUE)
-
-#     knownGenes <- UcscTrack(genome = "hg38", chromosome = chr,
-#                         track = "NCBI RefSeq", from = start, to = end,
-#                         trackType = "GeneRegionTrack",
-#                         rstarts = "exonStarts", rends = "exonEnds",
-#                         gene = "name", symbol = "name",
-#                         transcript = "name", strand = "strand",
-#                         fill = "#8282d2", name = "UCSC Genes")
-
-
-#     NT <- DataTrack(bwfiles["1b"], type="hist" , window = -1, windowSize = 250)
-    
-#     JQ1_high <- DataTrack(bwfiles["5a"], type="hist" , window = -1, windowSize = 250)
-
-#     NT_algn <- AlignmentsTrack(bamfiles["1b"], 
-#                                 chromosome=chr,
-#                                 from = min(start),
-#                                 to = max(end))
-    
-#     plt <- plotTracks(c(axistrack, NT, JQ1_high, knownGenes), from = min(start), to = max(end))
-
-
-#     break
-# }
 viewerStyle <- trackViewerStyle()
 setTrackViewerStyleParam(viewerStyle, "margin", c(.07, .04, .01, .03))
 setTrackViewerStyleParam(viewerStyle, "xaxis", T)
@@ -110,12 +58,10 @@ setTrackViewerStyleParam(viewerStyle, "xaxis", T)
 
 
 max_overall <- 0
-max <- 215
+max <- 0
 # trackviewer
 
-for (i in 1:length(gene_list)) {
     symbol <- "MYC"
-    symbol <- gene_list[[i]]
     id <- get(symbol, org.Hs.egSYMBOL2EG)
 
     # get loc
@@ -141,66 +87,102 @@ for (i in 1:length(gene_list)) {
     setTrackStyleParam(gTrack, "color", "darkblue")
     setTrackStyleParam(gTrack, "height", .001)
     # setTrackStyleParam(gTrack, "ylabpos", "right")
-    setTrackStyleParam(gTrack, "ylabgp", list("cex"=0.6, fontface="bold"))
+    setTrackStyleParam(gTrack, "ylabgp", list("cex"=0.3, fontface="bold"))
 
     # samples: (1b, 3a, 4b, 2b and 5b
-    NT <- importScore(bwfiles["1b"], format="BigWig", ranges=gr)
+    NT <- importScore(bwfiles["1a"], format="BigWig", ranges=gr)
     setTrackStyleParam(NT, "color", "black")
     setTrackStyleParam(NT, "height", .1998)
-    setTrackStyleParam(NT, "ylabgp", list("cex"=0.6, fontface="bold"))
+    setTrackStyleParam(NT, "ylabgp", list("cex"=0.3, fontface="bold"))
     setTrackYaxisParam(NT, "label", T)
-    setTrackYaxisParam(NT, "gp", list("cex"=0.6))
+    setTrackYaxisParam(NT, "gp", list("cex"=0.3))
+
+    NTb <- importScore(bwfiles["1b"], format="BigWig", ranges=gr)
+    setTrackStyleParam(NTb, "color", "black")
+    setTrackStyleParam(NTb, "height", .1998)
+    setTrackStyleParam(NTb, "ylabgp", list("cex"=0.3, fontface="bold"))
+
 
     JQ1_FCPF_low <- importScore(bwfiles["3a"], format="BigWig", ranges=gr)
     setTrackStyleParam(JQ1_FCPF_low, "color", "darkorange")
     setTrackStyleParam(JQ1_FCPF_low, "height", .1998)
-    setTrackStyleParam(JQ1_FCPF_low, "ylabgp", list("cex"=0.6, fontface="bold"))
+    setTrackStyleParam(JQ1_FCPF_low, "ylabgp", list("cex"=0.3, fontface="bold"))
     
-    sgRNA_JQ1_FCPF_low <- importScore(bwfiles["4b"], format="BigWig", ranges=gr)
+    JQ1_FCPF_low_b <- importScore(bwfiles["3b"], format="BigWig", ranges=gr)
+    setTrackStyleParam(JQ1_FCPF_low_b, "color", "darkorange")
+    setTrackStyleParam(JQ1_FCPF_low_b, "height", .1998)
+    setTrackStyleParam(JQ1_FCPF_low_b, "ylabgp", list("cex"=0.3, fontface="bold"))
+    
+    sgRNA_JQ1_FCPF_low <- importScore(bwfiles["4a"], format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNA_JQ1_FCPF_low, "color", "#295D8A")
     setTrackStyleParam(sgRNA_JQ1_FCPF_low, "height", .1998)
-    setTrackStyleParam(sgRNA_JQ1_FCPF_low, "ylabgp", list("cex"=0.6, fontface="bold"))
+    setTrackStyleParam(sgRNA_JQ1_FCPF_low, "ylabgp", list("cex"=0.3, fontface="bold"))
+
+    sgRNA_JQ1_FCPF_low_b <- importScore(bwfiles["4b"], format="BigWig", ranges=gr)
+    setTrackStyleParam(sgRNA_JQ1_FCPF_low_b, "color", "#295D8A")
+    setTrackStyleParam(sgRNA_JQ1_FCPF_low_b, "height", .1998)
+    setTrackStyleParam(sgRNA_JQ1_FCPF_low_b, "ylabgp", list("cex"=0.3, fontface="bold"))
     
-    sgRNA_JQ1_FCPF_high <- importScore(bwfiles["2b"], format="BigWig", ranges=gr)
+    sgRNA_JQ1_FCPF_high <- importScore(bwfiles["2a"], format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNA_JQ1_FCPF_high, "color", "#295D8A")
     setTrackStyleParam(sgRNA_JQ1_FCPF_high, "height", .1998)
-    setTrackStyleParam(sgRNA_JQ1_FCPF_high, "ylabgp", list("cex"=0.6, fontface="bold"))
+    setTrackStyleParam(sgRNA_JQ1_FCPF_high, "ylabgp", list("cex"=0.3, fontface="bold"))
+        
+    sgRNA_JQ1_FCPF_high_b <- importScore(bwfiles["2b"], format="BigWig", ranges=gr)
+    setTrackStyleParam(sgRNA_JQ1_FCPF_high_b, "color", "#295D8A")
+    setTrackStyleParam(sgRNA_JQ1_FCPF_high_b, "height", .1998)
+    setTrackStyleParam(sgRNA_JQ1_FCPF_high_b, "ylabgp", list("cex"=0.3, fontface="bold"))
     
-    sgRNQ_JQ1_high <- importScore(bwfiles["5a"],  format="BigWig", ranges=gr)
-    setTrackStyleParam(sgRNQ_JQ1_high, "color", "#9400D3")
-    setTrackStyleParam(sgRNQ_JQ1_high, "height", .1998)
-    setTrackStyleParam(sgRNQ_JQ1_high, "ylabgp", list("cex"=0.6, fontface="bold"))
+    sgRNA_JQ1_high <- importScore(bwfiles["5a"],  format="BigWig", ranges=gr)
+    setTrackStyleParam(sgRNA_JQ1_high, "color", "#9400D3")
+    setTrackStyleParam(sgRNA_JQ1_high, "height", .1998)
+    setTrackStyleParam(sgRNA_JQ1_high, "ylabgp", list("cex"=0.3, fontface="bold"))
+
+    sgRNA_JQ1_high_b <- importScore(bwfiles["5b"],  format="BigWig", ranges=gr)
+    setTrackStyleParam(sgRNA_JQ1_high_b, "color", "#9400D3")
+    setTrackStyleParam(sgRNA_JQ1_high_b, "height", .1998)
+    setTrackStyleParam(sgRNA_JQ1_high_b, "ylabgp", list("cex"=0.3, fontface="bold"))
 
 
     tl <- trackList(gTrack,
-                    sgRNQ_JQ1_high,
+                    sgRNA_JQ1_high_b,
+                    sgRNA_JQ1_high,
+                    sgRNA_JQ1_FCPF_high_b,
                     sgRNA_JQ1_FCPF_high,
+                    sgRNA_JQ1_FCPF_low_b,
                     sgRNA_JQ1_FCPF_low,
+                    JQ1_FCPF_low_b,
                     JQ1_FCPF_low,
+                    NTb,
                     NT
     )
     
     names(tl) <- c(symbol,
-                    "sgRNQ-JQ1 high",
+                    "sgRNA-JQ1 high_b",
+                    "sgRNA-JQ1 high",
+                    "sgRNA-JQ1_FCPF high_b",
                     "sgRNA-JQ1_FCPF high",
+                    "sgRNA-JQ1_FCPF low_b",
                     "sgRNA-JQ1_FCPF low",
+                    "JQ1-FCPF low_b",
                     "JQ1-FCPF low",
+                    "NT b",
                     "NT"
     )
 
     # get max score
-    # max <- 0
-    # for(i in 1:length(tl)){
-    #     #print(tl[[i]]$dat$score)
-    #     new <- max(tl[[i]]$dat$score)
-    #     if (new > max){
-    #         max <- new
-    #     }
-    #     if (new > max_overall){
-    #         max_overall <- new
-    #     }
+    max <- 0
+    for(i in 1:length(tl)){
+        #print(tl[[i]]$dat$score)
+        new <- max(tl[[i]]$dat$score)
+        if (new > max){
+            max <- new
+        }
+        if (new > max_overall){
+            max_overall <- new
+        }
         
-    # }
+    }
 
 
     # fixed y-axis
@@ -212,22 +194,21 @@ for (i in 1:length(gene_list)) {
     #     setTrackYaxisParam(tl[[i]], "main", FALSE)
     # #         setTrackYaxisParam(NT, "label", T)
     # # setTrackYaxisParam(NT, "at", c(0.2, 0.8))
-    # # setTrackYaxisParam(NT, "gp", list("cex"=0.6))
+    # # setTrackYaxisParam(NT, "gp", list("cex"=0.3))
 
     # }
 
     # svg(paste0("output/tracks/", symbol ,".svg"), width= 3000, height = 2200)
     # viewTracks(tl, gr=gr, autoOptimizeStyle=TRUE, newpage=FALSE)
     # dev.off()
-    png(paste0("output/tracks/", symbol ,".png"), width=3000, height = 2200, res=300)
+    png(paste0("output/tracks/", symbol ,"_complete.png"), width=3000, height = 2200, res=300)
     viewTracks(tl, gr=gr, viewerStyle=viewerStyle) #, smooth=T)
     dev.off()
 
-    svg(paste0("output/tracks/", symbol ,".svg"), width=10, height = 7.3)
+    svg(paste0("output/tracks/", symbol ,"_complete.svg"), width=10, height = 7.3)
     viewTracks(tl, gr=gr, viewerStyle=viewerStyle) #, smooth=T)
     dev.off()
    
-}
 
 
-#    browseTracks(tl, gr=gr, autoOptimizeStyle=TRUE, newpage=FALSE)
+
