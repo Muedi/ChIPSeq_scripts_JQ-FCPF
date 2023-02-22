@@ -58,10 +58,11 @@ setTrackViewerStyleParam(viewerStyle, "xaxis", T)
 
 
 max_overall <- 0
-max <- 0
+max <- 215
 # trackviewer
+for (i in 1:length(gene_list)) {
 
-    symbol <- "MYC"
+    symbol <- gene_list[[i]]
     id <- get(symbol, org.Hs.egSYMBOL2EG)
 
     # get loc
@@ -171,7 +172,7 @@ max <- 0
     )
 
     # get max score
-    max <- 0
+    # max <- 0
     for(i in 1:length(tl)){
         #print(tl[[i]]$dat$score)
         new <- max(tl[[i]]$dat$score)
@@ -210,5 +211,5 @@ max <- 0
     dev.off()
    
 
-
+}
 

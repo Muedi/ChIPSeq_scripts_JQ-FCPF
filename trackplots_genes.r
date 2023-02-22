@@ -114,7 +114,7 @@ max <- 215
 # trackviewer
 
 for (i in 1:length(gene_list)) {
-    symbol <- "MYC"
+    # symbol <- "MYC"
     symbol <- gene_list[[i]]
     id <- get(symbol, org.Hs.egSYMBOL2EG)
 
