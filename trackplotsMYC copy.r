@@ -60,7 +60,8 @@ setTrackViewerStyleParam(viewerStyle, "xaxis", T)
 max_overall <- 0
 max <- 215
 # trackviewer
-for (i in 1:length(gene_list)) {
+#for (i in 1:length(gene_list)) {
+for (i in 1) {
 
     symbol <- gene_list[[i]]
     id <- get(symbol, org.Hs.egSYMBOL2EG)
@@ -145,30 +146,32 @@ for (i in 1:length(gene_list)) {
     setTrackStyleParam(sgRNA_JQ1_high_b, "ylabgp", list("cex"=0.3, fontface="bold"))
 
 
-    tl <- trackList(gTrack,
-                    sgRNA_JQ1_high_b,
+    tl <- trackList(
+        gTrack,
+                    #sgRNA_JQ1_high_b,
                     sgRNA_JQ1_high,
-                    sgRNA_JQ1_FCPF_high_b,
+                    #sgRNA_JQ1_FCPF_high_b,
                     sgRNA_JQ1_FCPF_high,
-                    sgRNA_JQ1_FCPF_low_b,
+                    #sgRNA_JQ1_FCPF_low_b,
                     sgRNA_JQ1_FCPF_low,
-                    JQ1_FCPF_low_b,
+                    #JQ1_FCPF_low_b,
                     JQ1_FCPF_low,
-                    NTb,
-                    NT
+                    NTb#,
+                   # NT
     )
     
-    names(tl) <- c(symbol,
-                    "sgRNA-JQ1 high_b",
+    names(tl) <- c(
+        symbol,
+                    #"sgRNA-JQ1 high_b",
                     "sgRNA-JQ1 high",
-                    "sgRNA-JQ1_FCPF high_b",
+                    #"sgRNA-JQ1_FCPF high_b",
                     "sgRNA-JQ1_FCPF high",
-                    "sgRNA-JQ1_FCPF low_b",
+                    #"sgRNA-JQ1_FCPF low_b",
                     "sgRNA-JQ1_FCPF low",
-                    "JQ1-FCPF low_b",
+                    #"JQ1-FCPF low_b",
                     "JQ1-FCPF low",
-                    "NT b",
-                    "NT"
+                    "NT "#b",
+                   # "NT"
     )
 
     # get max score
@@ -202,11 +205,11 @@ for (i in 1:length(gene_list)) {
     # svg(paste0("output/tracks/", symbol ,".svg"), width= 3000, height = 2200)
     # viewTracks(tl, gr=gr, autoOptimizeStyle=TRUE, newpage=FALSE)
     # dev.off()
-    png(paste0("output/tracks/", symbol ,"_complete.png"), width=3000, height = 2200, res=300)
+    png(paste0("output/tracks/", symbol ,"_special.png"), width=3000, height = 2200, res=300)
     viewTracks(tl, gr=gr, viewerStyle=viewerStyle) #, smooth=T)
     dev.off()
 
-    svg(paste0("output/tracks/", symbol ,"_complete.svg"), width=10, height = 7.3)
+    svg(paste0("output/tracks/", symbol ,"_special.svg"), width=10, height = 7.3)
     viewTracks(tl, gr=gr, viewerStyle=viewerStyle) #, smooth=T)
     dev.off()
    
