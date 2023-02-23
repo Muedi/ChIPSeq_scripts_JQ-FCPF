@@ -89,61 +89,62 @@ for (i in 1) {
     setTrackStyleParam(gTrack, "color", "darkblue")
     setTrackStyleParam(gTrack, "height", .001)
     # setTrackStyleParam(gTrack, "ylabpos", "right")
-    setTrackStyleParam(gTrack, "ylabgp", list("cex"=0.3, fontface="bold"))
+    setTrackStyleParam(gTrack, "ylabgp", list("cex"=0.6, fontface="bold"))
 
     # samples: (1b, 3a, 4b, 2b and 5b
     NT <- importScore(bwfiles["1a"], format="BigWig", ranges=gr)
     setTrackStyleParam(NT, "color", "black")
     setTrackStyleParam(NT, "height", .1998)
-    setTrackStyleParam(NT, "ylabgp", list("cex"=0.3, fontface="bold"))
+    setTrackStyleParam(NT, "ylabgp", list("cex"=0.6, fontface="bold"))
     setTrackYaxisParam(NT, "label", T)
-    setTrackYaxisParam(NT, "gp", list("cex"=0.3))
+    setTrackYaxisParam(NT, "gp", list("cex"=0.6))
 
     NTb <- importScore(bwfiles["1b"], format="BigWig", ranges=gr)
     setTrackStyleParam(NTb, "color", "black")
     setTrackStyleParam(NTb, "height", .1998)
-    setTrackStyleParam(NTb, "ylabgp", list("cex"=0.3, fontface="bold"))
-
+    setTrackStyleParam(NTb, "ylabgp", list("cex"=0.6, fontface="bold"))
+    setTrackYaxisParam(NTb, "label", T)
+    setTrackYaxisParam(NTb, "gp", list("cex"=0.6))
 
     JQ1_FCPF_low <- importScore(bwfiles["3a"], format="BigWig", ranges=gr)
     setTrackStyleParam(JQ1_FCPF_low, "color", "darkorange")
     setTrackStyleParam(JQ1_FCPF_low, "height", .1998)
-    setTrackStyleParam(JQ1_FCPF_low, "ylabgp", list("cex"=0.3, fontface="bold"))
+    setTrackStyleParam(JQ1_FCPF_low, "ylabgp", list("cex"=0.6, fontface="bold"))
     
     JQ1_FCPF_low_b <- importScore(bwfiles["3b"], format="BigWig", ranges=gr)
     setTrackStyleParam(JQ1_FCPF_low_b, "color", "darkorange")
     setTrackStyleParam(JQ1_FCPF_low_b, "height", .1998)
-    setTrackStyleParam(JQ1_FCPF_low_b, "ylabgp", list("cex"=0.3, fontface="bold"))
+    setTrackStyleParam(JQ1_FCPF_low_b, "ylabgp", list("cex"=0.6, fontface="bold"))
     
     sgRNA_JQ1_FCPF_low <- importScore(bwfiles["4a"], format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNA_JQ1_FCPF_low, "color", "#295D8A")
     setTrackStyleParam(sgRNA_JQ1_FCPF_low, "height", .1998)
-    setTrackStyleParam(sgRNA_JQ1_FCPF_low, "ylabgp", list("cex"=0.3, fontface="bold"))
+    setTrackStyleParam(sgRNA_JQ1_FCPF_low, "ylabgp", list("cex"=0.6, fontface="bold"))
 
     sgRNA_JQ1_FCPF_low_b <- importScore(bwfiles["4b"], format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNA_JQ1_FCPF_low_b, "color", "#295D8A")
     setTrackStyleParam(sgRNA_JQ1_FCPF_low_b, "height", .1998)
-    setTrackStyleParam(sgRNA_JQ1_FCPF_low_b, "ylabgp", list("cex"=0.3, fontface="bold"))
+    setTrackStyleParam(sgRNA_JQ1_FCPF_low_b, "ylabgp", list("cex"=0.6, fontface="bold"))
     
     sgRNA_JQ1_FCPF_high <- importScore(bwfiles["2a"], format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNA_JQ1_FCPF_high, "color", "#295D8A")
     setTrackStyleParam(sgRNA_JQ1_FCPF_high, "height", .1998)
-    setTrackStyleParam(sgRNA_JQ1_FCPF_high, "ylabgp", list("cex"=0.3, fontface="bold"))
+    setTrackStyleParam(sgRNA_JQ1_FCPF_high, "ylabgp", list("cex"=0.6, fontface="bold"))
         
     sgRNA_JQ1_FCPF_high_b <- importScore(bwfiles["2b"], format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNA_JQ1_FCPF_high_b, "color", "#295D8A")
     setTrackStyleParam(sgRNA_JQ1_FCPF_high_b, "height", .1998)
-    setTrackStyleParam(sgRNA_JQ1_FCPF_high_b, "ylabgp", list("cex"=0.3, fontface="bold"))
+    setTrackStyleParam(sgRNA_JQ1_FCPF_high_b, "ylabgp", list("cex"=0.6, fontface="bold"))
     
     sgRNA_JQ1_high <- importScore(bwfiles["5a"],  format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNA_JQ1_high, "color", "#9400D3")
     setTrackStyleParam(sgRNA_JQ1_high, "height", .1998)
-    setTrackStyleParam(sgRNA_JQ1_high, "ylabgp", list("cex"=0.3, fontface="bold"))
+    setTrackStyleParam(sgRNA_JQ1_high, "ylabgp", list("cex"=0.6, fontface="bold"))
 
     sgRNA_JQ1_high_b <- importScore(bwfiles["5b"],  format="BigWig", ranges=gr)
     setTrackStyleParam(sgRNA_JQ1_high_b, "color", "#9400D3")
     setTrackStyleParam(sgRNA_JQ1_high_b, "height", .1998)
-    setTrackStyleParam(sgRNA_JQ1_high_b, "ylabgp", list("cex"=0.3, fontface="bold"))
+    setTrackStyleParam(sgRNA_JQ1_high_b, "ylabgp", list("cex"=0.6, fontface="bold"))
 
 
     tl <- trackList(
@@ -175,7 +176,7 @@ for (i in 1) {
     )
 
     # get max score
-    # max <- 0
+    max <- 0
     for(i in 1:length(tl)){
         #print(tl[[i]]$dat$score)
         new <- max(tl[[i]]$dat$score)
@@ -198,7 +199,7 @@ for (i in 1) {
     #     setTrackYaxisParam(tl[[i]], "main", FALSE)
     # #         setTrackYaxisParam(NT, "label", T)
     # # setTrackYaxisParam(NT, "at", c(0.2, 0.8))
-    # # setTrackYaxisParam(NT, "gp", list("cex"=0.3))
+    # # setTrackYaxisParam(NT, "gp", list("cex"=0.6))
 
     # }
 
