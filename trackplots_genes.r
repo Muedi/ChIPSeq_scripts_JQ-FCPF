@@ -19,6 +19,7 @@ library(tidyverse)
 library(stringr)
 library(biomaRt)
 library(trackViewer)
+
 # genes of special interest
 # Select genes of interest based on their symbols and retrieve their ENTREZID using org.Hs.eg.db
 gene_entrz <- AnnotationDbi::select(org.Hs.eg.db, 
@@ -35,9 +36,9 @@ ensembl <- useDataset("hsapiens_gene_ensembl", mart = ensembl)
 
 txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 
-peak.folder <- "peaks"
+# peak.folder <- "peaks"
 bam.folder <- "bams"
-
+# initialize Axis
 axistrack <- GenomeAxisTrack()
 
 # Retrieve gene annotations for the genes of interest using TxDb
@@ -47,12 +48,12 @@ txdb_gene_interest <- AnnotationDbi::select(txdb,
                                             keytype = "GENEID")
 txdb_gene_interest <- txdb_gene_interest %>% as_tibble()
 
-bwfiles <- list.files("bams", pattern = ".bw$", full.names = TRUE)
+bwfiles <- list.files(bam.folder, pattern = ".bw$", full.names = TRUE)
 names(bwfiles) <- str_extract(bwfiles, "[0-9][ab]")
 
-bamfiles <- list.files("bams", pattern = ".bam$", full.names = TRUE)
+bamfiles <- list.files(bam.folder, pattern = ".bam$", full.names = TRUE)
 names(bamfiles) <- str_extract(bamfiles, "[0-9][ab]")
-
+# coverage track from BigWig files
 sample_cov <- lapply(bwfiles, AlignmentsTrack, isPaired = FALSE, ucscChromosomeNames = FALSE)
 
 options(ucscChromosomeNames = FALSE)

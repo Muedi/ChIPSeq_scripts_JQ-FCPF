@@ -1,3 +1,10 @@
+######################################################################################################
+# Script: ChipSeq Trackplots for multiple genes
+# Author: Maximilian Sprang, Muedi
+# Date: 23.02.2023
+# Description: This script produces trackplots to observe the differences of Binding between the different sample treatments for MYC
+######################################################################################################
+
 library(ChIPseeker)
 library(GenomicFeatures)
 library(GenomicRanges)
@@ -6,7 +13,6 @@ library(ChIPpeakAnno)
 library(TxDb.Hsapiens.UCSC.hg38.knownGene)
 library(openxlsx)
 library(ggplot2)
-library(clusterProfiler)
 library(gridExtra)
 library(Gviz)
 library(tidyverse)
