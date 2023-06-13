@@ -1,4 +1,11 @@
-#### chipseq annotation
+######################################################################################################
+# Script: ChipSeq Annotation
+# Author: Maximilian Sprang, Muedi
+# Date: 23.02.2023
+# Description: This script annotatwes the Peakdata and produces exploratory plots, such as TSS profiles.
+# Subsequently peaks are checked for enrichment in Biological Processes and Molecular function with the GO databse
+######################################################################################################
+
 library(ChIPseeker)
 library(GenomicFeatures)
 library(GenomicRanges)
