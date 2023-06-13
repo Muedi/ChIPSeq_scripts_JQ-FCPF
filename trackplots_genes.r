@@ -51,58 +51,6 @@ sample_cov <- lapply(bwfiles, AlignmentsTrack, isPaired=F, ucscChromosomeNames=F
 
 options(ucscChromosomeNames=FALSE)
 
-# for (i in 1:length(gene_list)) {
-#     symbol <- gene_list[i]
-#     symbol <- "MYC"
-#     id <- gene_entrz[gene_entrz$SYMBOL == symbol,"ENTREZID"]
-
-#     # get adress
-#     # chr should be singular after unqiue, while multiple starts/ends remain
-#     # use the min start and the max end to cover the complete gene
-#     chr <- txdb_gene_interest %>%
-#         dplyr::filter(GENEID == id) %>%
-#         pull("EXONCHROM") %>%
-#         unique() 
-#     start <- txdb_gene_interest %>%
-#         dplyr::filter(GENEID == id) %>%
-#         pull("EXONSTART") %>%
-#         unique() %>% min() - 2000
-#     end <- txdb_gene_interest %>%
-#         dplyr::filter(GENEID == id) %>%
-#         pull("EXONEND") %>%
-#         unique() %>% max() + 2000
-    
-#     gtTrack <- GeneRegionTrack(txdb,
-#                 chromosome=chr,
-#                 start=min(start),
-#                 end=max(end),
-#                 collapseTranscripts="meta",
-#                 transcriptAnnotation="name", 
-#                 showId=TRUE)
-
-#     knownGenes <- UcscTrack(genome = "hg38", chromosome = chr,
-#                         track = "NCBI RefSeq", from = start, to = end,
-#                         trackType = "GeneRegionTrack",
-#                         rstarts = "exonStarts", rends = "exonEnds",
-#                         gene = "name", symbol = "name",
-#                         transcript = "name", strand = "strand",
-#                         fill = "#8282d2", name = "UCSC Genes")
-
-
-#     NT <- DataTrack(bwfiles["1b"], type="hist" , window = -1, windowSize = 250)
-    
-#     JQ1_high <- DataTrack(bwfiles["5a"], type="hist" , window = -1, windowSize = 250)
-
-#     NT_algn <- AlignmentsTrack(bamfiles["1b"], 
-#                                 chromosome=chr,
-#                                 from = min(start),
-#                                 to = max(end))
-    
-#     plt <- plotTracks(c(axistrack, NT, JQ1_high, knownGenes), from = min(start), to = max(end))
-
-
-#     break
-# }
 viewerStyle <- trackViewerStyle()
 setTrackViewerStyleParam(viewerStyle, "margin", c(.07, .04, .01, .03))
 setTrackViewerStyleParam(viewerStyle, "xaxis", T)
@@ -131,8 +79,6 @@ for (i in 1:length(gene_list)) {
 
     # range
     gr = GRanges(chr, IRanges(start, end), strand=strand)
-    # ideogram
-    # ideo <- loadIdeogram("hg38", chrom=chr, ranges=IRanges(start, end))
     # gene model and track
     trs <- geneModelFromTxdb(TxDb.Hsapiens.UCSC.hg38.knownGene,
                          org.Hs.eg.db,
@@ -207,18 +153,7 @@ for (i in 1:length(gene_list)) {
     for(j in 2:length(tl)){
         setTrackStyleParam(tl[[j]], "ylim", c(0, max))
     }
-    # flip y-axis position
-    # for(i in 1:length(tl)){
-    #     setTrackYaxisParam(tl[[i]], "main", FALSE)
-    # #         setTrackYaxisParam(NT, "label", T)
-    # # setTrackYaxisParam(NT, "at", c(0.2, 0.8))
-    # # setTrackYaxisParam(NT, "gp", list("cex"=0.6))
 
-    # }
-
-    # svg(paste0("output/tracks/", symbol ,".svg"), width= 3000, height = 2200)
-    # viewTracks(tl, gr=gr, autoOptimizeStyle=TRUE, newpage=FALSE)
-    # dev.off()
     png(paste0("output/tracks/", symbol ,".png"), width=3000, height = 2200, res=300)
     viewTracks(tl, gr=gr, viewerStyle=viewerStyle) #, smooth=T)
     dev.off()

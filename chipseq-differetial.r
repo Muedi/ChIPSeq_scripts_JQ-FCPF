@@ -16,8 +16,6 @@ txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 out.dir <- "output/diff/"
 dir.create(out.dir)
 
-# samples <- read.csv("samplesheets/comp/samplesheet_all.csv")
-# samples_no1a <- read.csv("samplesheets/comp/samplesheet_-1a.csv")
 # get sample sheets 
 sheets <- list.files(file.path("samplesheets"))
 sheets <- file.path("samplesheets", sheets)
@@ -26,8 +24,6 @@ names(sheets) <- str_extract_all(sheets, "[0-9]v[0-9]")
 
 
 for (i in 2:length(sheets)){
-# for (i in 1){
-
       # make output
       out <- paste0(out.dir, names(sheets[i]))
       samples <- read.csv(sheets[[i]])
