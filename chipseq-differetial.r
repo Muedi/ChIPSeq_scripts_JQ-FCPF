@@ -1,3 +1,10 @@
+######################################################################################################
+# Script: Differential Peak Analysis of ChIPseq data
+# Author: Maximilian Sprang, Muedi
+# Date: 23.02.2023
+# Description: This script analyses the peaks and counts to produce a differential peak analysis. 
+# These differential pewaks are then analysed for enrichment.
+######################################################################################################
 
 #################################################################################################
 # Differential peaks

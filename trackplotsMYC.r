@@ -1,5 +1,5 @@
 ######################################################################################################
-# Script: ChipSeq Trackplots for multiple genes
+# Script: ChipSeq Trackplots for MYC
 # Author: Maximilian Sprang, Muedi
 # Date: 23.02.2023
 # Description: This script produces trackplots to observe the differences of Binding between the different sample treatments for MYC
